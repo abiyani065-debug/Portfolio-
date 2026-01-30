@@ -9,88 +9,180 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head><style>
+:root {
+    --neon-blue: #0ff0fc;
+    --neon-blue-light: #8afcff;
+    --dark-bg: #0a0a16;
+    --dark-card: rgba(10, 15, 35, 0.7);
+    --light-text: #f0f8ff;
+    --gray-text: #a0a0c0;
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Exo 2', sans-serif;
+    background: var(--dark-bg);
+    color: var(--light-text);
+}
+
+/* HERO SECTION */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-layout {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: center;
+}
+
+/* LEFT PHOTO */
+.photo-card {
+    background: var(--dark-card);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(15,240,252,0.2);
+    position: relative;
+}
+
+.photo-card img {
+    width: 100%;
+    max-width: 300px;
+    height: 360px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.photo-id {
+    position: absolute;
+    bottom: -14px;
+    left: 20px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    color: var(--neon-blue);
+    background: rgba(15,240,252,0.15);
+    border-radius: 20px;
+}
+
+/* RIGHT CONTENT */
+.hero-tag {
+    color: #2e35ff;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.hero-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1.1;
+}
+
+.hero-title span {
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-blue-light));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero-desc {
+    margin: 25px 0;
+    max-width: 520px;
+    color: var(--gray-text);
+    font-size: 1.1rem;
+}
+
+/* BUTTONS */
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.neon-btn {
+    padding: 14px 36px;
+    border-radius: 30px;
+    border: 2px solid var(--neon-blue);
+    color: var(--neon-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.neon-btn:hover {
+    background: rgba(15,240,252,0.15);
+    color: white;
+}
+
+.outline-btn {
+    padding: 14px 36px;
+    border-radius: 30px;
+    border: 2px solid var(--neon-blue);
+    color: var(--neon-blue);
+    text-decoration: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .hero-layout {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
+}
+</style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#hero" class="nav-logo">
-                <span class="logo-text">Ankit</span>
-                <span class="logo-glow"></span>
-            </a>
-            <ul class="nav-menu">
-                <li><a href="#hero" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="hero-content">
+<section class="hero">
+    <div class="hero-layout">
+
+        <!-- LEFT PHOTO -->
+        <div class="photo-card">
+            <img src="ANKIT.jpeg" alt="Ankit Biyani">
+            </div>
+
+        <!-- RIGHT CONTENT -->
+        <div>
+            <p class="hero-tag">TEACH : STUDENT</p>
+
             <h1 class="hero-title">
-                <span class="title-text">Ankit Biyani</span>
-                <span class="title-glow"></span>
+                HI, I'M <br>
+                <span>ANKIT</span>
             </h1>
-            <h2 class="hero-subtitle">BCA Student & Aspiring Developer</h2>
-            <p class="hero-tagline">Crafting digital experiences with code and creativity</p>
-            <a href="#projects" class="neon-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                View Projects
-            </a>
-        </div>
-        <div class="hero-graphics">
-            <div class="floating-shape shape-1"></div>
-            <div class="floating-shape shape-2"></div>
-            <div class="floating-shape shape-3"></div>
-        </div>
-    </section>
 
-    <!-- About Me Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">
-                <span>About Me</span>
-               <p></p>I’m Ankit Biyani, currently pursuing BCA in Cloud Computing at Kristu Jayanti College. I have a basic knowledge of poster designing and enjoy playing cricket in my free time.</p>
-                <div class="title-line"></div>
-            </h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I'm a passionate BCA student specializing in web development and software engineering. My journey in technology began with simple HTML pages and has evolved into creating full-stack applications.</p>
-                    <p>I thrive on solving complex problems and turning ideas into functional, beautiful digital solutions. My goal is to become a proficient full-stack developer and contribute to innovative tech projects.</p>
-                    <div class="skills-highlights">
-                        <h3>Technical Focus:</h3>
-                        <div class="skills-tags">
-                            <span class="skill-tag">HTML5</span>
-                            <span class="skill-tag">CSS3</span>
-                            <span class="skill-tag">JavaScript ES6+</span>
-                            <span class="skill-tag">React Basics</span>
-                            <span class="skill-tag">Node.js & Express</span>
-                            <span class="skill-tag">MongoDB</span>
-                            <span class="skill-tag">Git & GitHub</span>
-                            <span class="skill-tag">Responsive Design</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div class="image-container">
-                        <div class="image-glow"></div>
-                    </div>
-                </div>
+            <p class="hero-desc">
+                BCA Cloud Computing student at Kristu Jayanti College.
+                Interested in web development, UI design, and creating
+                clean digital experiences using HTML, CSS, and JavaScript.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#" class="neon-btn">View Projects</a>
+                <a href="#" class="outline-btn">View GitHub</a>
             </div>
         </div>
-    </section>
+
+    </div>
+</section>
+
+<body>
+  
 
     <!-- Projects Section -->
     <section id="projects" class="section dark-section">
