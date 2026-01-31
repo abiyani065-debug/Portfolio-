@@ -10,23 +10,36 @@
 
 <style>
 :root{
---bg:#05070f;
---card:#0b1024;
---border:#1f2a55;
---text:#e8ecff;
---muted:#9aa3d1;
---accent:#4d8dff;
---accent2:#00ffd5;
+--bg:#07010f;
+--card:rgba(30,10,70,.65);
+--border:rgba(180,120,255,.25);
+--text:#f0e9ff;
+--muted:#b9a8ff;
+--accent:#8b5cff;
+--accent2:#00d4ff;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
 body{
 font-family:'Inter',sans-serif;
-background:var(--bg);
+background:radial-gradient(circle at top,#2b0a4a,#07010f 65%);
 color:var(--text);
 overflow-x:hidden;
 }
 
+/* BACKGROUND PARTICLES */
+#cloudCanvas{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+z-index:-1;
+pointer-events:none;
+}
+
+/* GENERAL */
 section{padding:90px 20px}
 .container{max-width:1200px;margin:auto}
 
@@ -40,15 +53,16 @@ color:transparent;
 }
 
 .card{
-background:linear-gradient(180deg,var(--card),#070b1a);
+background:var(--card);
+backdrop-filter:blur(16px);
 border:1px solid var(--border);
-border-radius:16px;
-padding:30px;
-transition:.3s;
+border-radius:20px;
+padding:34px;
+transition:.4s;
 }
 .card:hover{
-transform:translateY(-6px);
-box-shadow:0 0 30px rgba(77,141,255,.25);
+transform:translateY(-8px);
+box-shadow:0 0 45px rgba(139,92,255,.35);
 }
 
 /* HERO */
@@ -63,7 +77,8 @@ align-items:center;
 width:100%;
 height:380px;
 object-fit:cover;
-border-radius:16px;
+border-radius:18px;
+box-shadow:0 0 35px rgba(0,212,255,.35);
 }
 .hero h1{font-size:3.5rem}
 .hero h1 span{
@@ -71,23 +86,47 @@ background:linear-gradient(90deg,var(--accent),var(--accent2));
 -webkit-background-clip:text;
 color:transparent;
 }
-.hero p{margin:25px 0;color:var(--muted)}
-
-.btn{
-display:inline-block;
-padding:14px 34px;
-border-radius:8px;
-border:1px solid var(--accent);
-color:var(--accent);
-text-decoration:none;
-font-weight:600;
-margin-right:15px;
+.hero p{margin:14px 0;color:var(--muted)}
+.tagline{
+font-size:.95rem;
+color:var(--accent2);
+letter-spacing:.5px;
 }
-.btn:hover{background:var(--accent);color:#000}
+
+/* QUICK NAV */
+.quick-nav{
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+}
+.quick-item{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:8px;
+text-decoration:none;
+color:var(--accent2);
+font-weight:600;
+padding:16px 22px;
+border-radius:14px;
+background:rgba(255,255,255,0.04);
+border:1px solid var(--border);
+transition:.3s;
+}
+.quick-item i{
+font-size:1.6rem;
+color:var(--accent);
+}
+.quick-item:hover{
+transform:translateY(-6px);
+box-shadow:0 0 30px rgba(0,212,255,.4);
+background:rgba(255,255,255,0.08);
+}
 
 /* ABOUT */
 .about-text p{
-background:linear-gradient(90deg,#9aa3ff,#00ffd5);
+background:linear-gradient(90deg,#e1d7ff,#00d4ff);
 -webkit-background-clip:text;
 color:transparent;
 margin-bottom:14px;
@@ -110,7 +149,7 @@ color:var(--muted);
 }
 .progress{
 height:8px;
-background:#0a0f25;
+background:#14082a;
 border-radius:6px;
 overflow:hidden;
 }
@@ -131,14 +170,13 @@ gap:30px;
 width:100%;
 height:160px;
 object-fit:cover;
-border-radius:12px;
+border-radius:14px;
 cursor:pointer;
 }
 .cert-content h3{color:var(--accent2);margin:10px 0 5px}
 .cert-content p{color:var(--muted);font-size:.95rem}
-
 .cert-link{
-margin-top:10px;
+margin-top:12px;
 font-size:.9rem;
 color:var(--accent);
 text-align:center;
@@ -148,31 +186,6 @@ cursor:pointer;
 display:block;
 font-size:1.2rem;
 margin-bottom:4px;
-}
-
-/* CERT MODAL */
-.cert-modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.85);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:9999;
-}
-.cert-modal.active{display:flex}
-.cert-modal img{
-max-width:90%;
-max-height:90%;
-border-radius:12px;
-}
-.cert-close{
-position:absolute;
-top:25px;
-right:35px;
-font-size:2rem;
-color:#fff;
-cursor:pointer;
 }
 
 /* PROJECTS */
@@ -186,24 +199,29 @@ gap:30px;
 width:100%;
 height:160px;
 object-fit:cover;
-border-radius:12px;
-margin-bottom:12px;
+border-radius:14px;
+margin-bottom:10px;
 }
-.project-info{
-color:var(--accent);
+.project-desc{
 font-size:.9rem;
-}
-.project-info i{
-display:block;
-font-size:1.2rem;
+color:var(--muted);
 margin-bottom:6px;
 }
+.project-link{
+font-size:.9rem;
+color:var(--accent);
+}
+.project-link i{
+display:block;
+font-size:1.2rem;
+margin-bottom:4px;
+}
 
-/* PROJECT MODAL */
+/* MODAL */
 .modal{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.75);
+background:rgba(0,0,0,.85);
 display:none;
 align-items:center;
 justify-content:center;
@@ -211,14 +229,15 @@ z-index:999;
 }
 .modal.active{display:flex}
 .modal-box{
-max-width:700px;
 background:var(--card);
-border-radius:16px;
 padding:35px;
+border-radius:18px;
+max-width:700px;
+border:1px solid var(--border);
 }
 .close{
 float:right;
-font-size:1.4rem;
+font-size:1.6rem;
 cursor:pointer;
 color:var(--accent2);
 }
@@ -234,29 +253,44 @@ display:flex;
 justify-content:center;
 gap:15px;
 color:var(--muted);
+text-decoration:none;
 }
 .contact-item i{color:var(--accent)}
 
-footer{text-align:center;padding:30px;color:var(--muted)}
-
-@media(max-width:900px){
-.hero-grid{grid-template-columns:1fr;text-align:center}
-.hero h1{font-size:2.8rem}
+footer{
+text-align:center;
+padding:30px;
+color:var(--muted);
+border-top:1px solid var(--border);
 }
 </style>
 </head>
 
 <body>
 
+<canvas id="cloudCanvas"></canvas>
+
 <!-- HERO -->
 <section class="hero">
 <div class="container hero-grid">
-<div class="card"><img src="ankit white 2.jpeg" alt="Ankit"></div>
+<div class="card">
+<img src="ankit white 2.jpeg" alt="Ankit">
+</div>
 <div>
-<h1>Hello, I’m <span>Ankit</span></h1>
+<h1>Hi, I’m <span>Ankit</span></h1>
 <p>BCA Cloud Computing student passionate about web and cloud technologies.</p>
-<a href="#skills" class="btn">Skills</a>
-<a href="#projects" class="btn">Projects</a>
+<div class="tagline">Aspiring Cloud Engineer • Web Developer • Tech Enthusiast</div>
+</div>
+</div>
+</section>
+
+<!-- QUICK NAV -->
+<section style="padding:40px 20px">
+<div class="container">
+<div class="quick-nav">
+<a href="#skills" class="quick-item"><i class="fas fa-laptop-code"></i><span>Technical Skills</span></a>
+<a href="#certifications" class="quick-item"><i class="fas fa-certificate"></i><span>Certifications</span></a>
+<a href="#projects" class="quick-item"><i class="fas fa-project-diagram"></i><span>Projects</span></a>
 </div>
 </div>
 </section>
@@ -277,7 +311,6 @@ footer{text-align:center;padding:30px;color:var(--muted)}
 <section id="skills">
 <div class="container">
 <h2 class="section-title">Technical Skills</h2>
-
 <div class="skills">
 <div class="card skill-group">
 <h3>Frontend</h3>
@@ -302,56 +335,41 @@ footer{text-align:center;padding:30px;color:var(--muted)}
 </section>
 
 <!-- CERTIFICATIONS -->
-<section>
+<section id="certifications">
 <div class="container">
 <h2 class="section-title">Certifications</h2>
 <div class="certifications">
 
-<div class="card">
-<div class="cert-img"><img src="nascom.png" onclick="openCert(this.src)"></div>
+<div class="card" onclick="openCert('nascom.png')">
+<div class="cert-img"><img src="nascom.png"></div>
 <div class="cert-content">
 <h3>Digital Engineering</h3>
 <p>Engineering fundamentals & digital skills</p>
-<div class="cert-link" onclick="openCert('cert-digital-engineering.jpg')">
-<i class="fas fa-arrow-up"></i>
-Click here to see the certificate
-</div>
+<div class="cert-link"><i class="fas fa-arrow-up"></i>Click here to see the certificate</div>
 </div>
 </div>
 
-<div class="card">
-<div class="cert-img"><img src="front and web development.png" onclick="openCert(this.src)"></div>
+<div class="card" onclick="openCert('front and web development.png')">
+<div class="cert-img"><img src="front and web development.png"></div>
 <div class="cert-content">
 <h3>Frontend Development</h3>
 <p>HTML, CSS, JavaScript</p>
-<div class="cert-link" onclick="openCert('cert-frontend.jpg')">
-<i class="fas fa-arrow-up"></i>
-Click here to see the certificate
-</div>
+<div class="cert-link"><i class="fas fa-arrow-up"></i>Click here to see the certificate</div>
 </div>
 </div>
 
-<div class="card">
-<div class="cert-img"><img src="aws.png" onclick="openCert(this.src)"></div>
+<div class="card" onclick="openCert('aws.png')">
+<div class="cert-img"><img src="aws.png"></div>
 <div class="cert-content">
 <h3>AWS Cloud Foundation</h3>
 <p>Cloud Fundamentals</p>
-<div class="cert-link" onclick="openCert('cert-aws.jpg')">
-<i class="fas fa-arrow-up"></i>
-Click here to see the certificate
-</div>
+<div class="cert-link"><i class="fas fa-arrow-up"></i>Click here to see the certificate</div>
 </div>
 </div>
 
 </div>
 </div>
 </section>
-
-<!-- CERT MODAL -->
-<div class="cert-modal" id="certModal">
-<span class="cert-close" onclick="closeCert()">&times;</span>
-<img id="certFull">
-</div>
 
 <!-- PROJECTS -->
 <section id="projects">
@@ -362,54 +380,36 @@ Click here to see the certificate
 <div class="card project-card" onclick="openProject(1)">
 <div class="project-img"><img src="expense tracker 1.webp"></div>
 <h3>Expense Tracker</h3>
-<div class="project-info"><i class="fas fa-arrow-up"></i>Click for more info</div>
+<div class="project-desc">Track daily expenses with categories and totals.</div>
+<div class="project-link"><i class="fas fa-arrow-up"></i>Click here to see the details</div>
 </div>
 
 <div class="card project-card" onclick="openProject(2)">
 <div class="project-img"><img src="cloud  storage.avif"></div>
 <h3>Cloud File Storage</h3>
-<div class="project-info"><i class="fas fa-arrow-up"></i>Click for more info</div>
+<div class="project-desc">Concept-based cloud storage with security focus.</div>
+<div class="project-link"><i class="fas fa-arrow-up"></i>Click here to see the details</div>
 </div>
 
 <div class="card project-card" onclick="openProject(3)">
 <div class="project-img"><img src="task manager 1.png"></div>
 <h3>Task Manager</h3>
-<div class="project-info"><i class="fas fa-arrow-up"></i>Click for more info</div>
+<div class="project-desc">Manage tasks with status and priority.</div>
+<div class="project-link"><i class="fas fa-arrow-up"></i>Click here to see the details</div>
 </div>
 
 </div>
 </div>
 </section>
 
-<!-- PROJECT MODAL -->
-<div class="modal" id="modal">
-<div class="modal-box">
-<span class="close" onclick="closeProject()">&times;</span>
-<h2 id="mTitle"></h2>
-<p id="mDesc"></p>
-<ul id="mFeat"></ul>
-<p><strong>Tech Used:</strong> <span id="mTech"></span></p>
-</div>
-</div>
-
 <!-- CONTACT -->
-<section id="contact">
+<section>
 <div class="container card">
 <h2 class="section-title">Get In Touch</h2>
-
 <div class="contact-list">
-<a class="contact-item" href="mailto:ankitbiyani@email.com">
-<i class="fas fa-envelope"></i><span>25bcla07@kristujayanti.com</span>
-</a>
-
-<a class="contact-item" href="https://github.com/ankitbiyani" target="_blank">
-<i class="fab fa-github"></i><span>https://github.com/abiyani065-debug/ankitbiyani</span>
-</a>
-
-<a class="contact-item" href="https://www.linkedin.com/in/ankitbiyani" target="_blank">
-<i class="fab fa-linkedin"></i><span>linkedin.com/in/ankitbiyani</span>
-</a>
-
+<a class="contact-item" href="mailto:25bcla07@kristujayanti.com"><i class="fas fa-envelope"></i>25bcla07@kristujayanti.com</a>
+<a class="contact-item" href="https://github.com/abiyani065-debug" target="_blank"><i class="fab fa-github"></i>https://github.com/abiyani065-debug</a>
+<a class="contact-item" href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
 <a class="contact-item" href="tel:+919173121381">
 <i class="fas fa-phone"></i><span>+91 9173121381</span>
 </a>
@@ -421,55 +421,70 @@ Click here to see the certificate
 </div>
 </section>
 
-
-<script>
-window.addEventListener("scroll",()=>{
-document.querySelectorAll(".fill").forEach(b=>{
-if(b.getBoundingClientRect().top<innerHeight-100)
-b.style.width=b.getAttribute("data")+"%";
-});
-});
-</script>
-
-</body>
-</html>
-
 <footer>© 2026 Ankit Biyani</footer>
 
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-box">
+<span class="close" onclick="closeModal()">&times;</span>
+<img id="modalImg" style="width:100%;border-radius:12px;display:none">
+<h2 id="modalTitle"></h2>
+<p id="modalText"></p>
+</div>
+</div>
+
 <script>
-/* Skill animation */
+/* SKILL ANIMATION */
 window.addEventListener("scroll",()=>{
 document.querySelectorAll(".fill").forEach(b=>{
-if(b.getBoundingClientRect().top<innerHeight-100)
+if(b.getBoundingClientRect().top<innerHeight-120)
 b.style.width=b.getAttribute("data")+"%";
 });
 });
 
-/* Certificate modal */
+/* CERT & PROJECT MODAL */
 function openCert(src){
-document.getElementById("certModal").classList.add("active");
-document.getElementById("certFull").src=src;
+modal.classList.add("active");
+modalImg.style.display="block";
+modalImg.src=src;
+modalTitle.innerText="Certificate";
+modalText.innerText="";
 }
-function closeCert(){
-document.getElementById("certModal").classList.remove("active");
-}
-
-/* Project modal data */
-const data={
-1:{t:"Expense Tracker",d:"Manage daily expenses.",f:["Add/Delete expenses","Category tracking","Responsive UI"],tech:"HTML, CSS, JS"},
-2:{t:"Cloud File Storage",d:"Cloud storage concept.",f:["Cloud basics","Security awareness"],tech:"Cloud, HTML, CSS"},
-3:{t:"Task Manager",d:"Task management application.",f:["CRUD operations","Local storage","Clean UI"],tech:"HTML, CSS, JS"}
-};
-
 function openProject(i){
 modal.classList.add("active");
-mTitle.innerText=data[i].t;
-mDesc.innerText=data[i].d;
-mTech.innerText=data[i].tech;
-mFeat.innerHTML="";
-data[i].f.forEach(x=>mFeat.innerHTML+=`<li>${x}</li>`);
+modalImg.style.display="none";
+const data={
+1:["Expense Tracker","• Add, edit, and delete expenses\n• Category-wise tracking\n• Automatic total calculation\n• Responsive UI"],
+2:["Cloud File Storage","• Cloud storage working concept\n• Focus on data security\n• Basic cloud architecture\n• Frontend-based simulation"],
+3:["Task Manager","• Create, update, and delete tasks\n• Task priority & status\n• Uses browser local storage\n• Clean interface"]
+};
+modalTitle.innerText=data[i][0];
+modalText.innerText=data[i][1];
 }
-function closeProject(){modal.classList.remove("active");}
+function closeModal(){modal.classList.remove("active");}
+
+/* PARTICLES */
+const canvas=document.getElementById("cloudCanvas");
+const ctx=canvas.getContext("2d");
+let w,h,p=[];
+function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight}
+resize();addEventListener("resize",resize);
+class Particle{
+constructor(){this.x=Math.random()*w;this.y=Math.random()*h;this.r=Math.random()*2.3+1;this.s=Math.random()*0.4+0.2}
+move(){this.y-=this.s;if(this.y<0){this.y=h}}
+draw(){
+ctx.beginPath();
+ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+ctx.fillStyle="rgba(139,92,255,.5)";
+ctx.fill();
+}}
+for(let i=0;i<120;i++)p.push(new Particle());
+function animate(){
+ctx.clearRect(0,0,w,h);
+p.forEach(x=>{x.move();x.draw()});
+requestAnimationFrame(animate);
+}
+animate();
 </script>
 
 </body>
