@@ -234,8 +234,14 @@ display:flex;
 justify-content:center;
 gap:15px;
 color:var(--muted);
+text-decoration:none;
+transition:.3s;
 }
 .contact-item i{color:var(--accent)}
+.contact-item:hover{
+color:var(--accent2);
+transform:translateY(-3px);
+}
 
 footer{text-align:center;padding:30px;color:var(--muted)}
 
@@ -347,12 +353,6 @@ Click here to see the certificate
 </div>
 </section>
 
-<!-- CERT MODAL -->
-<div class="cert-modal" id="certModal">
-<span class="cert-close" onclick="closeCert()">&times;</span>
-<img id="certFull">
-</div>
-
 <!-- PROJECTS -->
 <section id="projects">
 <div class="container">
@@ -381,25 +381,31 @@ Click here to see the certificate
 </div>
 </section>
 
-<!-- PROJECT MODAL -->
-<div class="modal" id="modal">
-<div class="modal-box">
-<span class="close" onclick="closeProject()">&times;</span>
-<h2 id="mTitle"></h2>
-<p id="mDesc"></p>
-<ul id="mFeat"></ul>
-<p><strong>Tech Used:</strong> <span id="mTech"></span></p>
-</div>
-</div>
-
 <!-- CONTACT -->
 <section id="contact">
 <div class="container card">
 <h2 class="section-title">Get In Touch</h2>
+
 <div class="contact-list">
-<div class="contact-item"><i class="fas fa-envelope"></i> ankitbiyani@email.com</div>
-<div class="contact-item"><i class="fab fa-github"></i> github.com/ankitbiyani</div>
-<div class="contact-item"><i class="fab fa-linkedin"></i> linkedin.com/in/ankitbiyani</div>
+<a class="contact-item" href="mailto:ankitbiyani@email.com">
+<i class="fas fa-envelope"></i><span>25bcla07@kristujayanti.com</span>
+</a>
+
+<a class="contact-item" href="https://github.com/ankitbiyani" target="_blank">
+<i class="fab fa-github"></i><span>https://github.com/abiyani065-debug/ankitbiyani</span>
+</a>
+
+<a class="contact-item" href="https://www.linkedin.com/in/ankitbiyani" target="_blank">
+<i class="fab fa-linkedin"></i><span>linkedin.com/in/ankitbiyani</span>
+</a>
+
+<a class="contact-item" href="tel:+919876543210">
+<i class="fas fa-phone"></i><span>+91 9173121381</span>
+</a>
+
+<a class="contact-item" href="https://wa.me/919876543210" target="_blank">
+<i class="fab fa-whatsapp"></i><span>Chat on WhatsApp</span>
+</a>
 </div>
 </div>
 </section>
@@ -407,40 +413,14 @@ Click here to see the certificate
 <footer>© 2026 Ankit Biyani</footer>
 
 <script>
-/* Skill animation */
 window.addEventListener("scroll",()=>{
 document.querySelectorAll(".fill").forEach(b=>{
 if(b.getBoundingClientRect().top<innerHeight-100)
 b.style.width=b.getAttribute("data")+"%";
 });
 });
-
-/* Certificate modal */
-function openCert(src){
-document.getElementById("certModal").classList.add("active");
-document.getElementById("certFull").src=src;
-}
-function closeCert(){
-document.getElementById("certModal").classList.remove("active");
-}
-
-/* Project modal data */
-const data={
-1:{t:"Expense Tracker",d:"Manage daily expenses.",f:["Add/Delete expenses","Category tracking","Responsive UI"],tech:"HTML, CSS, JS"},
-2:{t:"Cloud File Storage",d:"Cloud storage concept.",f:["Cloud basics","Security awareness"],tech:"Cloud, HTML, CSS"},
-3:{t:"Task Manager",d:"Task management application.",f:["CRUD operations","Local storage","Clean UI"],tech:"HTML, CSS, JS"}
-};
-
-function openProject(i){
-modal.classList.add("active");
-mTitle.innerText=data[i].t;
-mDesc.innerText=data[i].d;
-mTech.innerText=data[i].tech;
-mFeat.innerHTML="";
-data[i].f.forEach(x=>mFeat.innerHTML+=`<li>${x}</li>`);
-}
-function closeProject(){modal.classList.remove("active");}
 </script>
 
 </body>
 </html>
+
