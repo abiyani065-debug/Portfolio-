@@ -396,13 +396,43 @@ Click here to see the certificate
 <section id="contact">
 <div class="container card">
 <h2 class="section-title">Get In Touch</h2>
+
 <div class="contact-list">
-<div class="contact-item"><i class="fas fa-envelope"></i> ankitbiyani@email.com</div>
-<div class="contact-item"><i class="fab fa-github"></i> github.com/ankitbiyani</div>
-<div class="contact-item"><i class="fab fa-linkedin"></i> linkedin.com/in/ankitbiyani</div>
+<a class="contact-item" href="mailto:ankitbiyani@email.com">
+<i class="fas fa-envelope"></i><span>25bcla07@kristujayanti.com</span>
+</a>
+
+<a class="contact-item" href="https://github.com/ankitbiyani" target="_blank">
+<i class="fab fa-github"></i><span>https://github.com/abiyani065-debug/ankitbiyani</span>
+</a>
+
+<a class="contact-item" href="https://www.linkedin.com/in/ankitbiyani" target="_blank">
+<i class="fab fa-linkedin"></i><span>linkedin.com/in/ankitbiyani</span>
+</a>
+
+<a class="contact-item" href="tel:+919173121381">
+<i class="fas fa-phone"></i><span>+91 9173121381</span>
+</a>
+
+<a class="contact-item" href="https://wa.me/9173121381" target="_blank">
+<i class="fab fa-whatsapp"></i><span>Chat on WhatsApp</span>
+</a>
 </div>
 </div>
 </section>
+
+
+<script>
+window.addEventListener("scroll",()=>{
+document.querySelectorAll(".fill").forEach(b=>{
+if(b.getBoundingClientRect().top<innerHeight-100)
+b.style.width=b.getAttribute("data")+"%";
+});
+});
+</script>
+
+</body>
+</html>
 
 <footer>© 2026 Ankit Biyani</footer>
 
@@ -444,4 +474,5 @@ function closeProject(){modal.classList.remove("active");}
 
 </body>
 </html>
+
 
