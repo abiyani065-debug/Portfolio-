@@ -20,7 +20,6 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
-
 html{scroll-behavior:smooth}
 
 body{
@@ -30,7 +29,7 @@ color:var(--text);
 overflow-x:hidden;
 }
 
-/* BACKGROUND PARTICLES */
+/* CLOUD BACKGROUND */
 #cloudCanvas{
 position:fixed;
 top:0;left:0;
@@ -65,28 +64,37 @@ transform:translateY(-8px);
 box-shadow:0 0 45px rgba(139,92,255,.35);
 }
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center}
-.hero-grid{
-display:grid;
-grid-template-columns:1fr 1.2fr;
-gap:60px;
+/* HERO (IMAGE ON TOP) */
+.hero{
+min-height:100vh;
+display:flex;
 align-items:center;
+text-align:center;
+}
+.hero-box{
+max-width:700px;
+margin:auto;
 }
 .hero img{
-width:100%;
-height:380px;
+width:260px;
+height:260px;
 object-fit:cover;
-border-radius:18px;
-box-shadow:0 0 35px rgba(0,212,255,.35);
+border-radius:50%;
+margin-bottom:26px;
+box-shadow:0 0 40px rgba(0,212,255,.45);
 }
-.hero h1{font-size:3.5rem}
+.hero h1{
+font-size:3.2rem;
+}
 .hero h1 span{
 background:linear-gradient(90deg,var(--accent),var(--accent2));
 -webkit-background-clip:text;
 color:transparent;
 }
-.hero p{margin:14px 0;color:var(--muted)}
+.hero p{
+margin:14px 0;
+color:var(--muted);
+}
 .tagline{
 font-size:.95rem;
 color:var(--accent2);
@@ -97,7 +105,8 @@ letter-spacing:.5px;
 .quick-nav{
 display:flex;
 justify-content:center;
-gap:40px;
+gap:30px;
+margin-top:35px;
 flex-wrap:wrap;
 }
 .quick-item{
@@ -108,20 +117,19 @@ gap:8px;
 text-decoration:none;
 color:var(--accent2);
 font-weight:600;
-padding:16px 22px;
+padding:14px 20px;
 border-radius:14px;
 background:rgba(255,255,255,0.04);
 border:1px solid var(--border);
 transition:.3s;
 }
 .quick-item i{
-font-size:1.6rem;
+font-size:1.4rem;
 color:var(--accent);
 }
 .quick-item:hover{
 transform:translateY(-6px);
 box-shadow:0 0 30px rgba(0,212,255,.4);
-background:rgba(255,255,255,0.08);
 }
 
 /* ABOUT */
@@ -176,16 +184,10 @@ cursor:pointer;
 .cert-content h3{color:var(--accent2);margin:10px 0 5px}
 .cert-content p{color:var(--muted);font-size:.95rem}
 .cert-link{
-margin-top:12px;
+margin-top:10px;
 font-size:.9rem;
 color:var(--accent);
 text-align:center;
-cursor:pointer;
-}
-.cert-link i{
-display:block;
-font-size:1.2rem;
-margin-bottom:4px;
 }
 
 /* PROJECTS */
@@ -200,21 +202,15 @@ width:100%;
 height:160px;
 object-fit:cover;
 border-radius:14px;
-margin-bottom:10px;
 }
 .project-desc{
 font-size:.9rem;
 color:var(--muted);
-margin-bottom:6px;
+margin:6px 0;
 }
 .project-link{
 font-size:.9rem;
 color:var(--accent);
-}
-.project-link i{
-display:block;
-font-size:1.2rem;
-margin-bottom:4px;
 }
 
 /* MODAL */
@@ -272,25 +268,16 @@ border-top:1px solid var(--border);
 
 <!-- HERO -->
 <section class="hero">
-<div class="container hero-grid">
-<div class="card">
+<div class="hero-box">
 <img src="ankit white 2.jpeg" alt="Ankit">
-</div>
-<div>
 <h1>Hi, I’m <span>Ankit</span></h1>
 <p>BCA Cloud Computing student passionate about web and cloud technologies.</p>
 <div class="tagline">Aspiring Cloud Engineer • Web Developer • Tech Enthusiast</div>
-</div>
-</div>
-</section>
 
-<!-- QUICK NAV -->
-<section style="padding:40px 20px">
-<div class="container">
 <div class="quick-nav">
-<a href="#skills" class="quick-item"><i class="fas fa-laptop-code"></i><span>Technical Skills</span></a>
-<a href="#certifications" class="quick-item"><i class="fas fa-certificate"></i><span>Certifications</span></a>
-<a href="#projects" class="quick-item"><i class="fas fa-project-diagram"></i><span>Projects</span></a>
+<a href="#skills" class="quick-item"><i class="fas fa-laptop-code"></i>Skills</a>
+<a href="#certifications" class="quick-item"><i class="fas fa-certificate"></i>Certifications</a>
+<a href="#projects" class="quick-item"><i class="fas fa-project-diagram"></i>Projects</a>
 </div>
 </div>
 </section>
@@ -312,6 +299,7 @@ border-top:1px solid var(--border);
 <div class="container">
 <h2 class="section-title">Technical Skills</h2>
 <div class="skills">
+
 <div class="card skill-group">
 <h3>Frontend</h3>
 <div class="skill"><div class="skill-title"><span>HTML</span><span>90%</span></div><div class="progress"><div class="fill" data="90"></div></div></div>
@@ -330,6 +318,7 @@ border-top:1px solid var(--border);
 <div class="skill"><div class="skill-title"><span>AWS Basics</span><span>70%</span></div><div class="progress"><div class="fill" data="70"></div></div></div>
 <div class="skill"><div class="skill-title"><span>Git & GitHub</span><span>75%</span></div><div class="progress"><div class="fill" data="75"></div></div></div>
 </div>
+
 </div>
 </div>
 </section>
@@ -410,13 +399,9 @@ border-top:1px solid var(--border);
 <a class="contact-item" href="mailto:25bcla07@kristujayanti.com"><i class="fas fa-envelope"></i>25bcla07@kristujayanti.com</a>
 <a class="contact-item" href="https://github.com/abiyani065-debug" target="_blank"><i class="fab fa-github"></i>https://github.com/abiyani065-debug</a>
 <a class="contact-item" href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
-<a class="contact-item" href="tel:+919173121381">
-<i class="fas fa-phone"></i><span>+91 9173121381</span>
-</a>
-
+<a class="contact-item" href="tel:+919173121381"><i class="fas fa-phone"></i>+91 9173121381</a>
 <a class="contact-item" href="https://wa.me/9173121381" target="_blank">
 <i class="fab fa-whatsapp"></i><span>Chat on WhatsApp</span>
-</a>
 </div>
 </div>
 </section>
@@ -463,7 +448,7 @@ modalText.innerText=data[i][1];
 }
 function closeModal(){modal.classList.remove("active");}
 
-/* PARTICLES */
+/* CLOUD PARTICLES */
 const canvas=document.getElementById("cloudCanvas");
 const ctx=canvas.getContext("2d");
 let w,h,p=[];
