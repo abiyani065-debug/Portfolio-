@@ -81,6 +81,14 @@ min-height:100vh;
 display:flex;align-items:center;
 text-align:center;
 }
+.hero img{
+width:300px;
+height:300px;
+border-radius:50%;
+object-fit:cover;
+margin-bottom:20px;
+box-shadow:0 0 40px rgba(0,212,255,.6);
+}
 .hero h1{font-size:3rem}
 .hero span{
 background:linear-gradient(90deg,var(--accent),var(--accent2));
@@ -102,30 +110,40 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:24px;
 }
+.skill{
+margin-bottom:16px;
+}
 .skill-title{
-display:flex;justify-content:space-between;
-font-size:.85rem;color:var(--muted);
+display:flex;
+justify-content:space-between;
+font-size:.85rem;
+color:var(--muted);
 margin-bottom:6px;
 }
 .progress{
-height:8px;background:#14082a;
-border-radius:6px;overflow:hidden;
+height:8px;
+background:#14082a;
+border-radius:6px;
+overflow:hidden;
 }
 .fill{
-height:100%;width:0;
+height:100%;
+width:0;
 background:linear-gradient(90deg,var(--accent),var(--accent2));
 transition:1.5s;
 }
 
-/* CERT & PROJECT */
+/* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:24px;
 }
 .grid img{
-width:100%;height:150px;
-object-fit:cover;border-radius:12px;
+width:100%;
+height:150px;
+object-fit:cover;
+border-radius:12px;
 cursor:pointer;
 }
 .link-text{
@@ -133,12 +151,15 @@ text-align:center;
 font-size:.85rem;
 color:var(--accent);
 margin-top:6px;
+cursor:pointer;
 }
 
 /* CONTACT */
 .contact-item{
-display:flex;justify-content:center;
-gap:10px;margin-bottom:10px;
+display:flex;
+justify-content:center;
+gap:10px;
+margin-bottom:10px;
 color:var(--muted);
 text-decoration:none;
 }
@@ -146,20 +167,26 @@ text-decoration:none;
 
 /* FEEDBACK */
 .feedback-form{
-display:grid;gap:14px;
-max-width:500px;margin:auto;
+display:grid;
+gap:14px;
+max-width:500px;
+margin:auto;
 }
 .feedback-form input,
 .feedback-form textarea{
-padding:12px;border-radius:10px;
+padding:12px;
+border-radius:10px;
 border:1px solid var(--border);
-background:#14082a;color:#fff;
+background:#14082a;
+color:#fff;
 }
 .feedback-form button{
-padding:12px;border:none;
+padding:12px;
+border:none;
 border-radius:10px;
 background:linear-gradient(90deg,var(--accent),var(--accent2));
-color:#fff;font-weight:600;
+color:#fff;
+font-weight:600;
 cursor:pointer;
 }
 #status{text-align:center;margin-top:10px}
@@ -179,6 +206,8 @@ background:var(--card);
 padding:24px;
 border-radius:16px;
 max-width:90%;
+max-height:90%;
+overflow:auto;
 }
 .close{
 float:right;
@@ -186,10 +215,15 @@ cursor:pointer;
 font-size:1.5rem;
 color:var(--accent2);
 }
+.modal-box img{
+width:100%;
+border-radius:12px;
+}
 </style>
 </head>
 
 <body>
+
 <canvas id="cloudCanvas"></canvas>
 
 <nav class="navbar">
@@ -210,6 +244,7 @@ color:var(--accent2);
 <!-- HERO -->
 <section class="hero" id="home">
 <div class="container">
+<img src="ankit white 2.jpeg" alt="Ankit Photo">
 <h1>Hi, I’m <span>Ankit</span></h1>
 <p>BCA Cloud Computing Student</p>
 <div class="tagline">Cloud • Web • Technology</div>
@@ -233,14 +268,22 @@ color:var(--accent2);
 <h2 class="section-title">Technical Skills</h2>
 <div class="skills">
 <div class="card">
+<div class="skill">
 <div class="skill-title"><span>HTML</span><span>90%</span></div>
 <div class="progress"><div class="fill" data="90"></div></div>
+</div>
+<div class="skill">
 <div class="skill-title"><span>CSS</span><span>85%</span></div>
 <div class="progress"><div class="fill" data="85"></div></div>
+</div>
+<div class="skill">
 <div class="skill-title"><span>JavaScript</span><span>80%</span></div>
 <div class="progress"><div class="fill" data="80"></div></div>
+</div>
+<div class="skill">
 <div class="skill-title"><span>Python</span><span>65%</span></div>
 <div class="progress"><div class="fill" data="65"></div></div>
+</div>
 </div>
 </div>
 </div>
@@ -251,12 +294,30 @@ color:var(--accent2);
 <div class="container">
 <h2 class="section-title">Certifications</h2>
 <div class="grid">
-<div class="card" onclick="openImg('nascom.png')"><img src="nascom.png"><div class="link-text">Digital Engineering</div></div>
-<div class="card" onclick="openImg('front and web development.png')"><img src="front and web development.png"><div class="link-text">Frontend Development</div></div>
-<div class="card" onclick="openImg('aws.png')"><img src="aws.png"><div class="link-text">AWS Cloud</div></div>
-<div class="card" onclick="openImg('Learnthon.png')"><img src="Learnthon.png"><div class="link-text">Learnthon</div></div>
-<div class="card" onclick="openImg('CSE cer.png')"><img src="CSE cer.png"><div class="link-text">CSE</div></div>
-<div class="card" onclick="openImg('SDPD cer.png')"><img src="SDPD cer.png"><div class="link-text">SDPD</div></div>
+<div class="card" onclick="openImg('nascom.png')">
+<img src="nascom.png">
+<div class="link-text">Click here to see certificate</div>
+</div>
+<div class="card" onclick="openImg('front and web development.png')">
+<img src="front and web development.png">
+<div class="link-text">Click here to see certificate</div>
+</div>
+<div class="card" onclick="openImg('aws.png')">
+<img src="aws.png">
+<div class="link-text">Click here to see certificate</div>
+</div>
+<div class="card" onclick="openImg('Learnthon.png')">
+<img src="Learnthon.png">
+<div class="link-text">Click here to see certificate</div>
+</div>
+<div class="card" onclick="openImg('CSE cer.png')">
+<img src="CSE cer.png">
+<div class="link-text">Click here to see certificate</div>
+</div>
+<div class="card" onclick="openImg('SDPD cer.png')">
+<img src="SDPD cer.png">
+<div class="link-text">Click here to see certificate</div>
+</div>
 </div>
 </div>
 </section>
@@ -266,9 +327,18 @@ color:var(--accent2);
 <div class="container">
 <h2 class="section-title">Projects</h2>
 <div class="grid">
-<div class="card" onclick="openProject('Expense Tracker','Add, edit & track expenses')"><img src="expense tracker 1.webp"><div class="link-text">Expense Tracker</div></div>
-<div class="card" onclick="openProject('Cloud Storage','Cloud file storage concept')"><img src="cloud  storage.avif"><div class="link-text">Cloud Storage</div></div>
-<div class="card" onclick="openProject('Task Manager','Manage tasks efficiently')"><img src="task manager 1.png"><div class="link-text">Task Manager</div></div>
+<div class="card" onclick="openProject('Expense Tracker','Add, edit and track expenses with category-wise analysis.')">
+<img src="expense tracker 1.webp">
+<div class="link-text">Click here to see project details</div>
+</div>
+<div class="card" onclick="openProject('Cloud File Storage','Cloud storage concept focusing on security and UI simulation.')">
+<img src="cloud  storage.avif">
+<div class="link-text">Click here to see project details</div>
+</div>
+<div class="card" onclick="openProject('Task Manager','Create, update and manage tasks with priority handling.')">
+<img src="task manager 1.png">
+<div class="link-text">Click here to see project details</div>
+</div>
 </div>
 </div>
 </section>
@@ -277,7 +347,7 @@ color:var(--accent2);
 <section id="contact">
 <div class="container card">
 <h2 class="section-title">Get In Touch</h2>
-<a class="contact-item" href="mailto:25bcla07@kristujayanti.com"><i class="fas fa-envelope"></i>Email</a>
+<a class="contact-item" href="mailto:25bcla07@kristujayanti.com"><i class="fas fa-envelope"></i>25bcla07@kristujayanti.com</a>
 <a class="contact-item" href="tel:+919173121381"><i class="fas fa-phone"></i>+91 9173121381</a>
 <a class="contact-item" href="https://github.com/abiyani065-debug"><i class="fab fa-github"></i>GitHub</a>
 <a class="contact-item" href="#"><i class="fab fa-linkedin"></i>LinkedIn</a>
@@ -308,7 +378,7 @@ color:var(--accent2);
 <span class="close" onclick="closeModal()">&times;</span>
 <h3 id="modalTitle"></h3>
 <p id="modalText"></p>
-<img id="modalImg" style="width:100%;display:none">
+<img id="modalImg">
 </div>
 </div>
 
@@ -316,12 +386,17 @@ color:var(--accent2);
 /* SKILL ANIMATION */
 window.addEventListener("scroll",()=>{
 document.querySelectorAll(".fill").forEach(b=>{
-if(b.getBoundingClientRect().top < innerHeight-100)
+if(b.getBoundingClientRect().top < innerHeight-120)
 b.style.width=b.getAttribute("data")+"%";
 });
 });
 
 /* MODAL */
+const modal=document.getElementById("modal");
+const modalImg=document.getElementById("modalImg");
+const modalTitle=document.getElementById("modalTitle");
+const modalText=document.getElementById("modalText");
+
 function openImg(src){
 modal.classList.add("active");
 modalImg.style.display="block";
@@ -329,13 +404,15 @@ modalImg.src=src;
 modalTitle.innerText="Certificate";
 modalText.innerText="";
 }
-function openProject(t,d){
+function openProject(title,details){
 modal.classList.add("active");
 modalImg.style.display="none";
-modalTitle.innerText=t;
-modalText.innerText=d;
+modalTitle.innerText=title;
+modalText.innerText=details;
 }
-function closeModal(){modal.classList.remove("active");}
+function closeModal(){
+modal.classList.remove("active");
+}
 
 /* SUPABASE */
 const supabase = window.supabase.createClient(
@@ -348,7 +425,7 @@ e.preventDefault();
 status.innerText="Submitting...";
 const {error}=await supabase.from("feedbacks")
 .insert([{name:name.value,email:email.value,message:message.value}]);
-status.innerText=error?"❌ Error":"✅ Feedback submitted!";
+status.innerText=error?"❌ Error submitting feedback":"✅ Feedback submitted successfully!";
 feedbackForm.reset();
 });
 
@@ -358,14 +435,30 @@ const ctx=canvas.getContext("2d");
 let w,h,p=[];
 function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight}
 resize();addEventListener("resize",resize);
-class P{constructor(){this.x=Math.random()*w;this.y=Math.random()*h;this.s=Math.random()*1+.3}
-draw(){ctx.fillStyle="rgba(139,92,255,.5)";ctx.beginPath();ctx.arc(this.x,this.y,2,0,6.28);ctx.fill()}
-move(){this.y-=this.s;if(this.y<0)this.y=h}}
-for(let i=0;i<120;i++)p.push(new P());
-(function a(){ctx.clearRect(0,0,w,h);p.forEach(x=>{x.move();x.draw()});requestAnimationFrame(a)})();
+class Particle{
+constructor(){
+this.x=Math.random()*w;
+this.y=Math.random()*h;
+this.s=Math.random()*1+.3;
+}
+move(){this.y-=this.s;if(this.y<0)this.y=h}
+draw(){
+ctx.fillStyle="rgba(139,92,255,.5)";
+ctx.beginPath();
+ctx.arc(this.x,this.y,2,0,6.28);
+ctx.fill();
+}}
+for(let i=0;i<120;i++)p.push(new Particle());
+(function animate(){
+ctx.clearRect(0,0,w,h);
+p.forEach(x=>{x.move();x.draw()});
+requestAnimationFrame(animate);
+})();
 </script>
+
 </body>
 </html>
+
 
 
 
