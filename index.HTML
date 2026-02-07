@@ -29,8 +29,7 @@ overflow-x:hidden;
 
 /* BACKGROUND */
 #cloudCanvas{
-position:fixed;inset:0;
-z-index:-1;
+position:fixed;inset:0;z-index:-1;
 }
 
 /* NAV */
@@ -78,12 +77,10 @@ box-shadow:0 0 30px rgba(139,92,255,.35);
 /* HERO */
 .hero{
 min-height:100vh;
-display:flex;align-items:center;
-text-align:center;
+display:flex;align-items:center;text-align:center;
 }
 .hero img{
-width:300px;
-height:300px;
+width:300px;height:300px;
 border-radius:50%;
 object-fit:cover;
 margin-bottom:20px;
@@ -110,25 +107,18 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:24px;
 }
-.skill{
-margin-bottom:16px;
-}
+.skill{margin-bottom:16px}
 .skill-title{
-display:flex;
-justify-content:space-between;
-font-size:.85rem;
-color:var(--muted);
+display:flex;justify-content:space-between;
+font-size:.85rem;color:var(--muted);
 margin-bottom:6px;
 }
 .progress{
-height:8px;
-background:#14082a;
-border-radius:6px;
-overflow:hidden;
+height:8px;background:#14082a;
+border-radius:6px;overflow:hidden;
 }
 .fill{
-height:100%;
-width:0;
+height:100%;width:0;
 background:linear-gradient(90deg,var(--accent),var(--accent2));
 transition:1.5s;
 }
@@ -140,53 +130,40 @@ grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:24px;
 }
 .grid img{
-width:100%;
-height:150px;
-object-fit:cover;
-border-radius:12px;
+width:100%;height:150px;
+object-fit:cover;border-radius:12px;
 cursor:pointer;
 }
 .link-text{
-text-align:center;
-font-size:.85rem;
-color:var(--accent);
-margin-top:6px;
+text-align:center;font-size:.85rem;
+color:var(--accent);margin-top:6px;
 cursor:pointer;
 }
 
 /* CONTACT */
 .contact-item{
-display:flex;
-justify-content:center;
-gap:10px;
-margin-bottom:10px;
-color:var(--muted);
-text-decoration:none;
+display:flex;justify-content:center;
+gap:10px;margin-bottom:10px;
+color:var(--muted);text-decoration:none;
 }
 .contact-item i{color:var(--accent)}
 
 /* FEEDBACK */
 .feedback-form{
-display:grid;
-gap:14px;
-max-width:500px;
-margin:auto;
+display:grid;gap:14px;
+max-width:500px;margin:auto;
 }
 .feedback-form input,
 .feedback-form textarea{
-padding:12px;
-border-radius:10px;
+padding:12px;border-radius:10px;
 border:1px solid var(--border);
-background:#14082a;
-color:#fff;
+background:#14082a;color:#fff;
 }
 .feedback-form button{
-padding:12px;
-border:none;
+padding:12px;border:none;
 border-radius:10px;
 background:linear-gradient(90deg,var(--accent),var(--accent2));
-color:#fff;
-font-weight:600;
+color:#fff;font-weight:600;
 cursor:pointer;
 }
 #status{text-align:center;margin-top:10px}
@@ -196,28 +173,25 @@ cursor:pointer;
 position:fixed;inset:0;
 background:rgba(0,0,0,.85);
 display:none;
-align-items:center;
-justify-content:center;
+align-items:center;justify-content:center;
 z-index:999;
 }
 .modal.active{display:flex}
 .modal-box{
 background:var(--card);
-padding:24px;
-border-radius:16px;
-max-width:90%;
-max-height:90%;
+padding:24px;border-radius:16px;
+max-width:90%;max-height:90%;
 overflow:auto;
+}
+.modal-box img{
+width:100%;
+border-radius:12px;
 }
 .close{
 float:right;
 cursor:pointer;
 font-size:1.5rem;
 color:var(--accent2);
-}
-.modal-box img{
-width:100%;
-border-radius:12px;
 }
 </style>
 </head>
@@ -244,7 +218,7 @@ border-radius:12px;
 <!-- HERO -->
 <section class="hero" id="home">
 <div class="container">
-<img src="ankit white 2.jpeg" alt="Ankit Photo">
+<img src="ankit white 2.jpeg">
 <h1>Hi, I’m <span>Ankit</span></h1>
 <p>BCA Cloud Computing Student</p>
 <div class="tagline">Cloud • Web • Technology</div>
@@ -269,19 +243,19 @@ border-radius:12px;
 <div class="skills">
 <div class="card">
 <div class="skill">
-<div class="skill-title"><span>HTML</span><span>90%</span></div>
+<div class="skill-title"><span>HTML</span><span class="percent" data="90">0%</span></div>
 <div class="progress"><div class="fill" data="90"></div></div>
 </div>
 <div class="skill">
-<div class="skill-title"><span>CSS</span><span>85%</span></div>
+<div class="skill-title"><span>CSS</span><span class="percent" data="85">0%</span></div>
 <div class="progress"><div class="fill" data="85"></div></div>
 </div>
 <div class="skill">
-<div class="skill-title"><span>JavaScript</span><span>80%</span></div>
+<div class="skill-title"><span>JavaScript</span><span class="percent" data="80">0%</span></div>
 <div class="progress"><div class="fill" data="80"></div></div>
 </div>
 <div class="skill">
-<div class="skill-title"><span>Python</span><span>65%</span></div>
+<div class="skill-title"><span>Python</span><span class="percent" data="65">0%</span></div>
 <div class="progress"><div class="fill" data="65"></div></div>
 </div>
 </div>
@@ -294,30 +268,12 @@ border-radius:12px;
 <div class="container">
 <h2 class="section-title">Certifications</h2>
 <div class="grid">
-<div class="card" onclick="openImg('nascom.png')">
-<img src="nascom.png">
-<div class="link-text">Click here to see certificate</div>
-</div>
-<div class="card" onclick="openImg('front and web development.png')">
-<img src="front and web development.png">
-<div class="link-text">Click here to see certificate</div>
-</div>
-<div class="card" onclick="openImg('aws.png')">
-<img src="aws.png">
-<div class="link-text">Click here to see certificate</div>
-</div>
-<div class="card" onclick="openImg('Learnthon.png')">
-<img src="Learnthon.png">
-<div class="link-text">Click here to see certificate</div>
-</div>
-<div class="card" onclick="openImg('CSE cer.png')">
-<img src="CSE cer.png">
-<div class="link-text">Click here to see certificate</div>
-</div>
-<div class="card" onclick="openImg('SDPD cer.png')">
-<img src="SDPD cer.png">
-<div class="link-text">Click here to see certificate</div>
-</div>
+<div class="card" onclick="openImg('nascom.png')"><img src="nascom.png"><div class="link-text">Click here to see certificate</div></div>
+<div class="card" onclick="openImg('front and web development.png')"><img src="front and web development.png"><div class="link-text">Click here to see certificate</div></div>
+<div class="card" onclick="openImg('aws.png')"><img src="aws.png"><div class="link-text">Click here to see certificate</div></div>
+<div class="card" onclick="openImg('Learnthon.png')"><img src="Learnthon.png"><div class="link-text">Click here to see certificate</div></div>
+<div class="card" onclick="openImg('CSE cer.png')"><img src="CSE cer.png"><div class="link-text">Click here to see certificate</div></div>
+<div class="card" onclick="openImg('SDPD cer.png')"><img src="SDPD cer.png"><div class="link-text">Click here to see certificate</div></div>
 </div>
 </div>
 </section>
@@ -327,15 +283,29 @@ border-radius:12px;
 <div class="container">
 <h2 class="section-title">Projects</h2>
 <div class="grid">
-<div class="card" onclick="openProject('Expense Tracker','Add, edit and track expenses with category-wise analysis.')">
+<div class="card" onclick="openProject('Expense Tracker',[
+'Add, edit and delete expenses',
+'Category-wise tracking',
+'Responsive UI'
+])">
 <img src="expense tracker 1.webp">
 <div class="link-text">Click here to see project details</div>
 </div>
-<div class="card" onclick="openProject('Cloud File Storage','Cloud storage concept focusing on security and UI simulation.')">
+
+<div class="card" onclick="openProject('Cloud File Storage',[
+'Cloud storage concept',
+'Security focused design',
+'Frontend simulation'
+])">
 <img src="cloud  storage.avif">
 <div class="link-text">Click here to see project details</div>
 </div>
-<div class="card" onclick="openProject('Task Manager','Create, update and manage tasks with priority handling.')">
+
+<div class="card" onclick="openProject('Task Manager',[
+'Create, update and delete tasks',
+'Priority handling',
+'Local storage usage'
+])">
 <img src="task manager 1.png">
 <div class="link-text">Click here to see project details</div>
 </div>
@@ -359,9 +329,9 @@ border-radius:12px;
 <div class="container card">
 <h2 class="section-title">Feedback</h2>
 <form class="feedback-form" id="feedbackForm">
-<input id="name" placeholder="Your Name" required>
-<input id="email" type="email" placeholder="Your Email" required>
-<textarea id="message" placeholder="Your Feedback" required></textarea>
+<input id="name" required placeholder="Your Name">
+<input id="email" type="email" required placeholder="Your Email">
+<textarea id="message" required placeholder="Your Feedback"></textarea>
 <button>Submit Feedback</button>
 </form>
 <div id="status"></div>
@@ -377,17 +347,28 @@ border-radius:12px;
 <div class="modal-box">
 <span class="close" onclick="closeModal()">&times;</span>
 <h3 id="modalTitle"></h3>
-<p id="modalText"></p>
+<div id="modalText"></div>
 <img id="modalImg">
 </div>
 </div>
 
 <script>
-/* SKILL ANIMATION */
+/* SKILL BAR + PERCENT ANIMATION */
 window.addEventListener("scroll",()=>{
-document.querySelectorAll(".fill").forEach(b=>{
-if(b.getBoundingClientRect().top < innerHeight-120)
-b.style.width=b.getAttribute("data")+"%";
+document.querySelectorAll(".fill").forEach(bar=>{
+if(bar.getBoundingClientRect().top < innerHeight-120 && !bar.classList.contains("done")){
+bar.classList.add("done");
+const target=+bar.getAttribute("data");
+bar.style.width=target+"%";
+
+const percent=bar.parentElement.previousElementSibling.querySelector(".percent");
+let count=0;
+const interval=setInterval(()=>{
+count++;
+percent.innerText=count+"%";
+if(count>=target)clearInterval(interval);
+},20);
+}
 });
 });
 
@@ -402,20 +383,22 @@ modal.classList.add("active");
 modalImg.style.display="block";
 modalImg.src=src;
 modalTitle.innerText="Certificate";
-modalText.innerText="";
+modalText.innerHTML="";
 }
-function openProject(title,details){
+
+function openProject(title,points){
 modal.classList.add("active");
 modalImg.style.display="none";
 modalTitle.innerText=title;
-modalText.innerText=details;
+modalText.innerHTML="<ul>"+points.map(p=>`<li>${p}</li>`).join("")+"</ul>";
 }
+
 function closeModal(){
 modal.classList.remove("active");
 }
 
 /* SUPABASE */
-const supabase = window.supabase.createClient(
+const supabase=window.supabase.createClient(
 "https://fjhffuuoiaeakyhcpwjw.supabase.co",
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZqaGZmdXVvaWFlYWt5aGNwd2p3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0NTM4NTEsImV4cCI6MjA4NjAyOTg1MX0.0nYlnulJgXO6l41vd6z6kXhP_d8pvhF-ecdqjm0NBJY"
 );
@@ -458,6 +441,7 @@ requestAnimationFrame(animate);
 
 </body>
 </html>
+
 
 
 
