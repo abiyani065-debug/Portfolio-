@@ -7,8 +7,6 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<!-- ✅ SUPABASE CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
@@ -29,19 +27,15 @@ color:var(--text);
 overflow-x:hidden;
 }
 
-/* BACKGROUND ANIMATION */
+/* BACKGROUND */
 #cloudCanvas{
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
+position:fixed;inset:0;
 z-index:-1;
-pointer-events:none;
 }
 
-/* NAVBAR */
+/* NAV */
 .navbar{
-position:fixed;
-top:0;left:0;width:100%;
+position:fixed;top:0;width:100%;
 background:rgba(7,1,15,.85);
 backdrop-filter:blur(14px);
 border-bottom:1px solid var(--border);
@@ -50,26 +44,22 @@ z-index:1000;
 .nav-container{
 max-width:1200px;margin:auto;
 padding:14px 20px;
-display:flex;justify-content:space-between;align-items:center;
-flex-wrap:wrap;
-}
-.logo{
-font-size:1.4rem;font-weight:700;
-background:linear-gradient(90deg,var(--accent),var(--accent2));
--webkit-background-clip:text;color:transparent;
-}
-.nav-links{
-display:flex;gap:16px;flex-wrap:wrap;
+display:flex;justify-content:space-between;
 }
 .nav-links a{
-text-decoration:none;color:var(--muted);font-size:.9rem;
+color:var(--muted);
+margin-left:14px;
+text-decoration:none;
+font-size:.9rem;
 }
 
 /* GLOBAL */
 section{padding:120px 20px}
 .container{max-width:1200px;margin:auto}
 .section-title{
-text-align:center;font-size:2.6rem;margin-bottom:40px;
+text-align:center;
+font-size:2.6rem;
+margin-bottom:40px;
 background:linear-gradient(90deg,var(--accent),var(--accent2));
 -webkit-background-clip:text;color:transparent;
 }
@@ -88,12 +78,8 @@ box-shadow:0 0 30px rgba(139,92,255,.35);
 /* HERO */
 .hero{
 min-height:100vh;
-display:flex;align-items:center;text-align:center;
-}
-.hero img{
-width:260px;height:260px;border-radius:50%;
-object-fit:cover;margin-bottom:20px;
-box-shadow:0 0 40px rgba(0,212,255,.6);
+display:flex;align-items:center;
+text-align:center;
 }
 .hero h1{font-size:3rem}
 .hero span{
@@ -104,7 +90,8 @@ background:linear-gradient(90deg,var(--accent),var(--accent2));
 
 /* ABOUT */
 .about-text p{
-margin-bottom:12px;line-height:1.7;
+margin-bottom:12px;
+line-height:1.7;
 background:linear-gradient(90deg,#e1d7ff,#00d4ff);
 -webkit-background-clip:text;color:transparent;
 }
@@ -115,14 +102,14 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:24px;
 }
-.skill{margin-bottom:16px}
 .skill-title{
 display:flex;justify-content:space-between;
 font-size:.85rem;color:var(--muted);
 margin-bottom:6px;
 }
 .progress{
-height:8px;background:#14082a;border-radius:6px;overflow:hidden;
+height:8px;background:#14082a;
+border-radius:6px;overflow:hidden;
 }
 .fill{
 height:100%;width:0;
@@ -130,47 +117,95 @@ background:linear-gradient(90deg,var(--accent),var(--accent2));
 transition:1.5s;
 }
 
+/* CERT & PROJECT */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:24px;
+}
+.grid img{
+width:100%;height:150px;
+object-fit:cover;border-radius:12px;
+cursor:pointer;
+}
+.link-text{
+text-align:center;
+font-size:.85rem;
+color:var(--accent);
+margin-top:6px;
+}
+
+/* CONTACT */
+.contact-item{
+display:flex;justify-content:center;
+gap:10px;margin-bottom:10px;
+color:var(--muted);
+text-decoration:none;
+}
+.contact-item i{color:var(--accent)}
+
 /* FEEDBACK */
 .feedback-form{
-display:grid;gap:14px;max-width:500px;margin:auto;
+display:grid;gap:14px;
+max-width:500px;margin:auto;
 }
-.feedback-form input,.feedback-form textarea{
+.feedback-form input,
+.feedback-form textarea{
 padding:12px;border-radius:10px;
 border:1px solid var(--border);
 background:#14082a;color:#fff;
 }
 .feedback-form button{
-padding:12px;border:none;border-radius:10px;
+padding:12px;border:none;
+border-radius:10px;
 background:linear-gradient(90deg,var(--accent),var(--accent2));
-color:#fff;font-weight:600;cursor:pointer;
+color:#fff;font-weight:600;
+cursor:pointer;
 }
-.feedback-status{
-text-align:center;margin-top:12px;font-size:.9rem;
-}
+#status{text-align:center;margin-top:10px}
 
 /* MODAL */
 .modal{
 position:fixed;inset:0;
 background:rgba(0,0,0,.85);
-display:none;align-items:center;justify-content:center;
+display:none;
+align-items:center;
+justify-content:center;
 z-index:999;
 }
 .modal.active{display:flex}
 .modal-box{
 background:var(--card);
-padding:24px;border-radius:16px;
-max-width:90%;max-height:90%;overflow:auto;
+padding:24px;
+border-radius:16px;
+max-width:90%;
 }
 .close{
-float:right;font-size:1.4rem;
-cursor:pointer;color:var(--accent2);
+float:right;
+cursor:pointer;
+font-size:1.5rem;
+color:var(--accent2);
 }
 </style>
 </head>
 
 <body>
-
 <canvas id="cloudCanvas"></canvas>
+
+<nav class="navbar">
+<div class="nav-container">
+<strong>My Portfolio</strong>
+<div class="nav-links">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#certifications">Certifications</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+<a href="#feedback">Feedback</a>
+</div>
+</div>
+</nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -181,19 +216,85 @@ cursor:pointer;color:var(--accent2);
 </div>
 </section>
 
+<!-- ABOUT -->
+<section id="about">
+<div class="container card about-text">
+<h2 class="section-title">About Me</h2>
+<p>I am Ankit Biyani from Surat, Gujarat.</p>
+<p>Pursuing BCA in Cloud Computing at Kristu Jayanti University.</p>
+<p>Interested in Web Development and Cloud Technologies.</p>
+<p>Looking for internships and hands-on experience.</p>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<div class="container">
+<h2 class="section-title">Technical Skills</h2>
+<div class="skills">
+<div class="card">
+<div class="skill-title"><span>HTML</span><span>90%</span></div>
+<div class="progress"><div class="fill" data="90"></div></div>
+<div class="skill-title"><span>CSS</span><span>85%</span></div>
+<div class="progress"><div class="fill" data="85"></div></div>
+<div class="skill-title"><span>JavaScript</span><span>80%</span></div>
+<div class="progress"><div class="fill" data="80"></div></div>
+<div class="skill-title"><span>Python</span><span>65%</span></div>
+<div class="progress"><div class="fill" data="65"></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+<div class="container">
+<h2 class="section-title">Certifications</h2>
+<div class="grid">
+<div class="card" onclick="openImg('nascom.png')"><img src="nascom.png"><div class="link-text">Digital Engineering</div></div>
+<div class="card" onclick="openImg('front and web development.png')"><img src="front and web development.png"><div class="link-text">Frontend Development</div></div>
+<div class="card" onclick="openImg('aws.png')"><img src="aws.png"><div class="link-text">AWS Cloud</div></div>
+<div class="card" onclick="openImg('Learnthon.png')"><img src="Learnthon.png"><div class="link-text">Learnthon</div></div>
+<div class="card" onclick="openImg('CSE cer.png')"><img src="CSE cer.png"><div class="link-text">CSE</div></div>
+<div class="card" onclick="openImg('SDPD cer.png')"><img src="SDPD cer.png"><div class="link-text">SDPD</div></div>
+</div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<div class="container">
+<h2 class="section-title">Projects</h2>
+<div class="grid">
+<div class="card" onclick="openProject('Expense Tracker','Add, edit & track expenses')"><img src="expense tracker 1.webp"><div class="link-text">Expense Tracker</div></div>
+<div class="card" onclick="openProject('Cloud Storage','Cloud file storage concept')"><img src="cloud  storage.avif"><div class="link-text">Cloud Storage</div></div>
+<div class="card" onclick="openProject('Task Manager','Manage tasks efficiently')"><img src="task manager 1.png"><div class="link-text">Task Manager</div></div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="container card">
+<h2 class="section-title">Get In Touch</h2>
+<a class="contact-item" href="mailto:25bcla07@kristujayanti.com"><i class="fas fa-envelope"></i>Email</a>
+<a class="contact-item" href="tel:+919173121381"><i class="fas fa-phone"></i>+91 9173121381</a>
+<a class="contact-item" href="https://github.com/abiyani065-debug"><i class="fab fa-github"></i>GitHub</a>
+<a class="contact-item" href="#"><i class="fab fa-linkedin"></i>LinkedIn</a>
+</div>
+</section>
+
 <!-- FEEDBACK -->
 <section id="feedback">
 <div class="container card">
 <h2 class="section-title">Feedback</h2>
-
 <form class="feedback-form" id="feedbackForm">
-<input type="text" id="name" placeholder="Your Name" required>
-<input type="email" id="email" placeholder="Your Email" required>
-<textarea rows="4" id="message" placeholder="Your Feedback" required></textarea>
-<button type="submit">Submit Feedback</button>
+<input id="name" placeholder="Your Name" required>
+<input id="email" type="email" placeholder="Your Email" required>
+<textarea id="message" placeholder="Your Feedback" required></textarea>
+<button>Submit Feedback</button>
 </form>
-
-<div class="feedback-status" id="status"></div>
+<div id="status"></div>
 </div>
 </section>
 
@@ -201,40 +302,70 @@ cursor:pointer;color:var(--accent2);
 © 2026 Ankit Biyani
 </footer>
 
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-box">
+<span class="close" onclick="closeModal()">&times;</span>
+<h3 id="modalTitle"></h3>
+<p id="modalText"></p>
+<img id="modalImg" style="width:100%;display:none">
+</div>
+</div>
+
 <script>
-/* 🔗 SUPABASE CONFIG */
-const supabaseUrl = "https://fjhffuuoiaeakyhcpwjw.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZqaGZmdXVvaWFlYWt5aGNwd2p3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0NTM4NTEsImV4cCI6MjA4NjAyOTg1MX0.0nYlnulJgXO6l41vd6z6kXhP_d8pvhF-ecdqjm0NBJY";
-
-const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
-
-/* 📨 FEEDBACK SUBMIT */
-document.getElementById("feedbackForm").addEventListener("submit", async (e) => {
-e.preventDefault();
-
-const status = document.getElementById("status");
-status.innerText = "Submitting...";
-
-const name = document.getElementById("name").value;
-const email = document.getElementById("email").value;
-const message = document.getElementById("message").value;
-
-const { error } = await supabaseClient
-.from("feedbacks")
-.insert([{ name, email, message }]);
-
-if (error) {
-status.innerText = "❌ Error submitting feedback";
-status.style.color = "red";
-} else {
-status.innerText = "✅ Feedback submitted successfully!";
-status.style.color = "#00d4ff";
-e.target.reset();
-}
+/* SKILL ANIMATION */
+window.addEventListener("scroll",()=>{
+document.querySelectorAll(".fill").forEach(b=>{
+if(b.getBoundingClientRect().top < innerHeight-100)
+b.style.width=b.getAttribute("data")+"%";
 });
-</script>
+});
 
+/* MODAL */
+function openImg(src){
+modal.classList.add("active");
+modalImg.style.display="block";
+modalImg.src=src;
+modalTitle.innerText="Certificate";
+modalText.innerText="";
+}
+function openProject(t,d){
+modal.classList.add("active");
+modalImg.style.display="none";
+modalTitle.innerText=t;
+modalText.innerText=d;
+}
+function closeModal(){modal.classList.remove("active");}
+
+/* SUPABASE */
+const supabase = window.supabase.createClient(
+"https://fjhffuuoiaeakyhcpwjw.supabase.co",
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZqaGZmdXVvaWFlYWt5aGNwd2p3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0NTM4NTEsImV4cCI6MjA4NjAyOTg1MX0.0nYlnulJgXO6l41vd6z6kXhP_d8pvhF-ecdqjm0NBJY"
+);
+
+feedbackForm.addEventListener("submit",async e=>{
+e.preventDefault();
+status.innerText="Submitting...";
+const {error}=await supabase.from("feedbacks")
+.insert([{name:name.value,email:email.value,message:message.value}]);
+status.innerText=error?"❌ Error":"✅ Feedback submitted!";
+feedbackForm.reset();
+});
+
+/* BACKGROUND PARTICLES */
+const canvas=document.getElementById("cloudCanvas");
+const ctx=canvas.getContext("2d");
+let w,h,p=[];
+function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight}
+resize();addEventListener("resize",resize);
+class P{constructor(){this.x=Math.random()*w;this.y=Math.random()*h;this.s=Math.random()*1+.3}
+draw(){ctx.fillStyle="rgba(139,92,255,.5)";ctx.beginPath();ctx.arc(this.x,this.y,2,0,6.28);ctx.fill()}
+move(){this.y-=this.s;if(this.y<0)this.y=h}}
+for(let i=0;i<120;i++)p.push(new P());
+(function a(){ctx.clearRect(0,0,w,h);p.forEach(x=>{x.move();x.draw()});requestAnimationFrame(a)})();
+</script>
 </body>
 </html>
+
 
 
