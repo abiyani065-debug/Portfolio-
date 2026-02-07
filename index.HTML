@@ -18,7 +18,6 @@
 --accent:#8b5cff;
 --accent2:#00d4ff;
 }
-
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 
@@ -29,7 +28,43 @@ color:var(--text);
 overflow-x:hidden;
 }
 
-/* CLOUD BACKGROUND */
+/* NAVBAR */
+.navbar{
+position:fixed;
+top:0;left:0;
+width:100%;
+z-index:1000;
+background:rgba(7,1,15,.75);
+backdrop-filter:blur(14px);
+border-bottom:1px solid var(--border);
+}
+.nav-container{
+max-width:1200px;
+margin:auto;
+padding:16px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+.logo{
+font-size:1.4rem;
+font-weight:700;
+background:linear-gradient(90deg,var(--accent),var(--accent2));
+-webkit-background-clip:text;
+color:transparent;
+}
+.nav-links{
+display:flex;
+gap:22px;
+}
+.nav-links a{
+text-decoration:none;
+color:var(--muted);
+font-size:.95rem;
+transition:.3s;
+}
+.nav-links a:hover{color:var(--accent2)}
+
 #cloudCanvas{
 position:fixed;
 top:0;left:0;
@@ -38,8 +73,7 @@ z-index:-1;
 pointer-events:none;
 }
 
-/* GENERAL */
-section{padding:90px 20px}
+section{padding:120px 20px}
 .container{max-width:1200px;margin:auto}
 
 .section-title{
@@ -64,44 +98,31 @@ transform:translateY(-8px);
 box-shadow:0 0 45px rgba(139,92,255,.35);
 }
 
-/* HERO (IMAGE ON TOP) */
+/* HERO */
 .hero{
 min-height:100vh;
 display:flex;
 align-items:center;
 text-align:center;
 }
-.hero-box{
-max-width:700px;
-margin:auto;
-}
+.hero-box{max-width:700px;margin:auto}
 .hero img{
-width:260px;
-height:260px;
+width:300px;
+height:300px;
 object-fit:cover;
 border-radius:50%;
 margin-bottom:26px;
-box-shadow:0 0 40px rgba(0,212,255,.45);
+box-shadow:0 0 50px rgba(0,212,255,.55);
 }
-.hero h1{
-font-size:3.2rem;
-}
+.hero h1{font-size:3.2rem}
 .hero h1 span{
 background:linear-gradient(90deg,var(--accent),var(--accent2));
 -webkit-background-clip:text;
 color:transparent;
 }
-.hero p{
-margin:14px 0;
-color:var(--muted);
-}
-.tagline{
-font-size:.95rem;
-color:var(--accent2);
-letter-spacing:.5px;
-}
+.hero p{margin:14px 0;color:var(--muted)}
+.tagline{font-size:.95rem;color:var(--accent2)}
 
-/* QUICK NAV */
 .quick-nav{
 display:flex;
 justify-content:center;
@@ -123,10 +144,7 @@ background:rgba(255,255,255,0.04);
 border:1px solid var(--border);
 transition:.3s;
 }
-.quick-item i{
-font-size:1.4rem;
-color:var(--accent);
-}
+.quick-item i{font-size:1.4rem;color:var(--accent)}
 .quick-item:hover{
 transform:translateY(-6px);
 box-shadow:0 0 30px rgba(0,212,255,.4);
@@ -168,13 +186,13 @@ background:linear-gradient(90deg,var(--accent),var(--accent2));
 transition:1.5s;
 }
 
-/* CERTIFICATIONS */
-.certifications{
+/* CERTIFICATIONS & PROJECTS */
+.certifications,.projects{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:30px;
 }
-.cert-img img{
+.cert-img img,.project-img img{
 width:100%;
 height:160px;
 object-fit:cover;
@@ -183,35 +201,13 @@ cursor:pointer;
 }
 .cert-content h3{color:var(--accent2);margin:10px 0 5px}
 .cert-content p{color:var(--muted);font-size:.95rem}
-.cert-link{
+.cert-link,.project-link{
 margin-top:10px;
 font-size:.9rem;
 color:var(--accent);
 text-align:center;
 }
-
-/* PROJECTS */
-.projects{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:30px;
-}
-.project-card{text-align:center;cursor:pointer}
-.project-img img{
-width:100%;
-height:160px;
-object-fit:cover;
-border-radius:14px;
-}
-.project-desc{
-font-size:.9rem;
-color:var(--muted);
-margin:6px 0;
-}
-.project-link{
-font-size:.9rem;
-color:var(--accent);
-}
+.project-desc{font-size:.9rem;color:var(--muted);margin:6px 0}
 
 /* MODAL */
 .modal{
@@ -253,6 +249,31 @@ text-decoration:none;
 }
 .contact-item i{color:var(--accent)}
 
+/* FEEDBACK */
+.feedback-form{
+display:grid;
+gap:18px;
+max-width:500px;
+margin:auto;
+}
+.feedback-form input,
+.feedback-form textarea{
+padding:14px;
+border-radius:12px;
+border:1px solid var(--border);
+background:#14082a;
+color:var(--text);
+}
+.feedback-form button{
+padding:14px;
+border:none;
+border-radius:12px;
+background:linear-gradient(90deg,var(--accent),var(--accent2));
+color:#fff;
+font-weight:600;
+cursor:pointer;
+}
+
 footer{
 text-align:center;
 padding:30px;
@@ -264,16 +285,30 @@ border-top:1px solid var(--border);
 
 <body>
 
+<nav class="navbar">
+<div class="nav-container">
+<div class="logo">My Portfolio</div>
+<div class="nav-links">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#certifications">Certifications</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+<a href="#feedback">Feedback</a>
+</div>
+</div>
+</nav>
+
 <canvas id="cloudCanvas"></canvas>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="home">
 <div class="hero-box">
 <img src="ankit white 2.jpeg" alt="Ankit">
 <h1>Hi, I’m <span>Ankit</span></h1>
 <p>BCA Cloud Computing student passionate about web and cloud technologies.</p>
 <div class="tagline">Aspiring Cloud Engineer • Web Developer • Tech Enthusiast</div>
-
 <div class="quick-nav">
 <a href="#skills" class="quick-item"><i class="fas fa-laptop-code"></i>Skills</a>
 <a href="#certifications" class="quick-item"><i class="fas fa-certificate"></i>Certifications</a>
@@ -283,7 +318,7 @@ border-top:1px solid var(--border);
 </section>
 
 <!-- ABOUT -->
-<section>
+<section id="about">
 <div class="container card about-text">
 <h2 class="section-title">About Me</h2>
 <p>Hi, I’m Ankit Biyani. I was born and brought up in Surat, Gujarat, and I am currently pursuing a BCA in Cloud Computing at Kristu Jayanti Deemed to be University.</p>
@@ -334,7 +369,7 @@ border-top:1px solid var(--border);
 <div class="cert-content">
 <h3>Digital Engineering</h3>
 <p>Engineering fundamentals & digital skills</p>
-<div class="cert-link"><i class="fas fa-arrow-up"></i>Click here to see the certificate</div>
+<div class="cert-link">Click here to see the certificate</div>
 </div>
 </div>
 
@@ -343,7 +378,7 @@ border-top:1px solid var(--border);
 <div class="cert-content">
 <h3>Frontend Development</h3>
 <p>HTML, CSS, JavaScript</p>
-<div class="cert-link"><i class="fas fa-arrow-up"></i>Click here to see the certificate</div>
+<div class="cert-link">Click here to see the certificate</div>
 </div>
 </div>
 
@@ -352,7 +387,34 @@ border-top:1px solid var(--border);
 <div class="cert-content">
 <h3>AWS Cloud Foundation</h3>
 <p>Cloud Fundamentals</p>
-<div class="cert-link"><i class="fas fa-arrow-up"></i>Click here to see the certificate</div>
+<div class="cert-link">Click here to see the certificate</div>
+</div>
+</div>
+
+<div class="card" onclick="openCert('learnthon.png')">
+<div class="cert-img"><img src="learnthon.png"></div>
+<div class="cert-content">
+<h3>LEARNTHON</h3>
+<p>Hands-on learning & problem solving</p>
+<div class="cert-link">Click here to see the certificate</div>
+</div>
+</div>
+
+<div class="card" onclick="openCert('CSE cer.png')">
+<div class="cert-img"><img src="CSE cer.png"></div>
+<div class="cert-content">
+<h3>Certified Software Engineer</h3>
+<p>Software engineering principles</p>
+<div class="cert-link">Click here to see the certificate</div>
+</div>
+</div>
+
+<div class="card" onclick="openCert('SDPD cer.png')">
+<div class="cert-img"><img src="SDPD cer.png"></div>
+<div class="cert-content">
+<h3>Software Developer – Product Development</h3>
+<p>Product development lifecycle</p>
+<div class="cert-link">Click here to see the certificate</div>
 </div>
 </div>
 
@@ -360,7 +422,7 @@ border-top:1px solid var(--border);
 </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- PROJECTS (RESTORED EXACTLY) -->
 <section id="projects">
 <div class="container">
 <h2 class="section-title">Projects</h2>
@@ -370,29 +432,29 @@ border-top:1px solid var(--border);
 <div class="project-img"><img src="expense tracker 1.webp"></div>
 <h3>Expense Tracker</h3>
 <div class="project-desc">Track daily expenses with categories and totals.</div>
-<div class="project-link"><i class="fas fa-arrow-up"></i>Click here to see the details</div>
+<div class="project-link">Click here to see the details</div>
 </div>
 
 <div class="card project-card" onclick="openProject(2)">
 <div class="project-img"><img src="cloud  storage.avif"></div>
 <h3>Cloud File Storage</h3>
 <div class="project-desc">Concept-based cloud storage with security focus.</div>
-<div class="project-link"><i class="fas fa-arrow-up"></i>Click here to see the details</div>
+<div class="project-link">Click here to see the details</div>
 </div>
 
 <div class="card project-card" onclick="openProject(3)">
 <div class="project-img"><img src="task manager 1.png"></div>
 <h3>Task Manager</h3>
 <div class="project-desc">Manage tasks with status and priority.</div>
-<div class="project-link"><i class="fas fa-arrow-up"></i>Click here to see the details</div>
+<div class="project-link">Click here to see the details</div>
 </div>
 
 </div>
 </div>
 </section>
 
-<!-- CONTACT -->
-<section>
+<!-- CONTACT (RESTORED EXACTLY) -->
+<section id="contact">
 <div class="container card">
 <h2 class="section-title">Get In Touch</h2>
 <div class="contact-list">
@@ -401,6 +463,19 @@ border-top:1px solid var(--border);
 <a class="contact-item" href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
 <a class="contact-item" href="tel:+919173121381"><i class="fas fa-phone"></i>+91 9173121381</a>
 </div>
+</div>
+</section>
+
+<!-- FEEDBACK -->
+<section id="feedback">
+<div class="container card">
+<h2 class="section-title">Feedback</h2>
+<form class="feedback-form">
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<textarea rows="4" placeholder="Your Feedback" required></textarea>
+<button type="submit">Submit Feedback</button>
+</form>
 </div>
 </section>
 
@@ -425,7 +500,7 @@ b.style.width=b.getAttribute("data")+"%";
 });
 });
 
-/* CERT & PROJECT MODAL */
+/* MODAL FUNCTIONS */
 function openCert(src){
 modal.classList.add("active");
 modalImg.style.display="block";
@@ -446,7 +521,7 @@ modalText.innerText=data[i][1];
 }
 function closeModal(){modal.classList.remove("active");}
 
-/* CLOUD PARTICLES */
+/* CLOUD BACKGROUND */
 const canvas=document.getElementById("cloudCanvas");
 const ctx=canvas.getContext("2d");
 let w,h,p=[];
@@ -454,7 +529,7 @@ function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight}
 resize();addEventListener("resize",resize);
 class Particle{
 constructor(){this.x=Math.random()*w;this.y=Math.random()*h;this.r=Math.random()*2.3+1;this.s=Math.random()*0.4+0.2}
-move(){this.y-=this.s;if(this.y<0){this.y=h}}
+move(){this.y-=this.s;if(this.y<0)this.y=h}
 draw(){
 ctx.beginPath();
 ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
@@ -462,12 +537,11 @@ ctx.fillStyle="rgba(139,92,255,.5)";
 ctx.fill();
 }}
 for(let i=0;i<120;i++)p.push(new Particle());
-function animate(){
+(function animate(){
 ctx.clearRect(0,0,w,h);
 p.forEach(x=>{x.move();x.draw()});
 requestAnimationFrame(animate);
-}
-animate();
+})();
 </script>
 
 </body>
