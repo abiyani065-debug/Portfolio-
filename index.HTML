@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ankit Biyani | Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -10,7 +10,6 @@
 
 <style>
 :root{
---bg:#07010f;
 --card:rgba(30,10,70,.65);
 --border:rgba(180,120,255,.25);
 --text:#f0e9ff;
@@ -28,9 +27,7 @@ background:radial-gradient(circle at top,#2b0a4a,#07010f 65%);
 color:var(--text);
 overflow-x:hidden;
 }
-section{padding:120px 20px}
-.container{max-width:1200px;margin:auto}
-#bgCanvas{position:fixed;inset:0;z-index:-1}
+#cloudCanvas{position:fixed;inset:0;z-index:-1}
 
 /* NAV */
 .navbar{
@@ -40,7 +37,7 @@ backdrop-filter:blur(14px);
 border-bottom:1px solid var(--border);
 z-index:1000;
 }
-.nav-inner{
+.nav-container{
 max-width:1200px;margin:auto;
 padding:14px 20px;
 display:flex;justify-content:space-between;align-items:center;
@@ -50,14 +47,17 @@ font-size:1.4rem;font-weight:700;
 background:linear-gradient(90deg,var(--accent),var(--accent2));
 -webkit-background-clip:text;color:transparent;
 }
-.nav-inner a{
-text-decoration:none;
-color:var(--muted);
-margin-left:16px;
-font-size:.9rem;
-}
+.nav-links{display:flex;gap:16px}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:.9rem}
 
-/* CARD */
+/* GLOBAL */
+section{padding:120px 20px}
+.container{max-width:1200px;margin:auto}
+.section-title{
+text-align:center;font-size:2.6rem;margin-bottom:40px;
+background:linear-gradient(90deg,var(--accent),var(--accent2));
+-webkit-background-clip:text;color:transparent;
+}
 .card{
 background:var(--card);
 border:1px solid var(--border);
@@ -65,20 +65,13 @@ border-radius:18px;
 padding:32px;
 transition:.3s;
 }
-.card:hover{transform:translateY(-6px)}
+.card:hover{transform:translateY(-6px);box-shadow:0 0 30px rgba(139,92,255,.35)}
 
 /* HERO */
-.hero{
-min-height:100vh;
-display:flex;
-align-items:center;
-text-align:center;
-}
+.hero{min-height:100vh;display:flex;align-items:center;text-align:center}
 .hero img{
-width:220px;height:220px;
-border-radius:50%;
-object-fit:cover;
-margin-bottom:20px;
+width:240px;height:240px;border-radius:50%;
+object-fit:cover;margin-bottom:20px;
 box-shadow:0 0 40px rgba(0,212,255,.6);
 }
 .hero h1{font-size:3rem}
@@ -86,16 +79,7 @@ box-shadow:0 0 40px rgba(0,212,255,.6);
 background:linear-gradient(90deg,var(--accent),var(--accent2));
 -webkit-background-clip:text;color:transparent;
 }
-.tagline{color:var(--accent2);margin-top:10px}
-
-/* TITLES */
-.section-title{
-text-align:center;
-font-size:2.6rem;
-margin-bottom:40px;
-background:linear-gradient(90deg,var(--accent),var(--accent2));
--webkit-background-clip:text;color:transparent;
-}
+.tagline{color:var(--accent2);margin-top:8px}
 
 /* SKILLS */
 .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
@@ -103,21 +87,26 @@ background:linear-gradient(90deg,var(--accent),var(--accent2));
 .progress{height:8px;background:#14082a;border-radius:6px;overflow:hidden}
 .fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:1.5s}
 
-/* GRID */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
-.grid img{width:100%;height:150px;object-fit:cover;border-radius:12px;cursor:pointer}
-.link{text-align:center;color:var(--accent);font-size:.85rem;margin-top:6px}
+/* GRIDS */
+.certifications,.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:24px;
+}
+.cert-card img,.project-card img{
+width:100%;height:150px;
+object-fit:cover;border-radius:12px;cursor:pointer;
+}
+.link-text{text-align:center;font-size:.85rem;color:var(--accent);margin-top:6px}
 
 /* CONTACT */
-.contact a{
+.contact-item{
 display:flex;justify-content:center;gap:12px;
-color:var(--muted);
-text-decoration:none;
-margin-bottom:12px;
+text-decoration:none;color:var(--muted);margin-bottom:12px;
 }
 
 /* FEEDBACK */
-.feedback-form{max-width:500px;margin:auto;display:grid;gap:14px}
+.feedback-form{display:grid;gap:14px;max-width:500px;margin:auto}
 .feedback-form input,.feedback-form textarea{
 padding:12px;border-radius:10px;
 border:1px solid var(--border);
@@ -129,7 +118,12 @@ background:linear-gradient(90deg,var(--accent),var(--accent2));
 color:#fff;font-weight:600;
 cursor:pointer;
 }
-.feedback-status{text-align:center;font-size:.9rem}
+.feedback-form button:disabled{opacity:.6;cursor:not-allowed}
+.feedback-status{
+text-align:center;
+margin-top:12px;
+font-size:.9rem;
+}
 .success{color:var(--success)}
 .error{color:var(--error)}
 
@@ -137,17 +131,14 @@ cursor:pointer;
 .modal{
 position:fixed;inset:0;
 background:rgba(0,0,0,.85);
-display:none;
-align-items:center;
-justify-content:center;
+display:none;align-items:center;justify-content:center;
 z-index:999;
 }
 .modal.active{display:flex}
 .modal-box{
 background:var(--card);
-padding:20px;
-border-radius:16px;
-max-width:90%;
+padding:20px;border-radius:16px;
+max-width:90%;max-height:90%;
 }
 .modal-box img{width:100%;border-radius:12px}
 .close{float:right;font-size:1.5rem;cursor:pointer;color:var(--accent2)}
@@ -156,28 +147,27 @@ max-width:90%;
 
 <body>
 
-<canvas id="bgCanvas"></canvas>
+<canvas id="cloudCanvas"></canvas>
 
-<!-- NAVBAR -->
 <nav class="navbar">
-  <div class="nav-inner">
-    <div class="logo">My Portfolio</div>
-    <div>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#certs">Certifications</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-      <a href="#feedback">Feedback</a>
-    </div>
-  </div>
+<div class="nav-container">
+<div class="logo">My Portfolio</div>
+<div class="nav-links">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#certifications">Certifications</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+<a href="#feedback">Feedback</a>
+</div>
+</div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
 <div class="container">
-<img src="ankit.jpg">
+<img src="ankit white 2.jpeg" alt="Ankit">
 <h1>Hi, I’m <span>Ankit</span></h1>
 <p>BCA Cloud Computing Student</p>
 <div class="tagline">Cloud • Web • Technology</div>
@@ -189,15 +179,16 @@ max-width:90%;
 <div class="container card">
 <h2 class="section-title">About Me</h2>
 <p>I am Ankit Biyani from Surat, Gujarat.</p>
-<p>Pursuing BCA in Cloud Computing.</p>
-<p>Interested in Web Development & Cloud.</p>
+<p>Pursuing BCA in Cloud Computing at Kristu Jayanti University.</p>
+<p>Interested in Web Development and Cloud Technologies.</p>
+<p>Looking for internships and hands-on experience.</p>
 </div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
 <div class="container">
-<h2 class="section-title">Skills</h2>
+<h2 class="section-title">Technical Skills</h2>
 <div class="skills">
 <div class="card">
 <div class="skill-title"><span>HTML</span><span>90%</span></div>
@@ -206,40 +197,10 @@ max-width:90%;
 <div class="progress"><div class="fill" data="85"></div></div>
 <div class="skill-title"><span>JavaScript</span><span>80%</span></div>
 <div class="progress"><div class="fill" data="80"></div></div>
+<div class="skill-title"><span>Python</span><span>65%</span></div>
+<div class="progress"><div class="fill" data="65"></div></div>
 </div>
 </div>
-</div>
-</section>
-
-<!-- CERTIFICATIONS -->
-<section id="certs">
-<div class="container">
-<h2 class="section-title">Certifications</h2>
-<div class="grid">
-<div onclick="openImg('cert1.jpg')"><img src="cert1.jpg"><div class="link">View</div></div>
-<div onclick="openImg('cert2.jpg')"><img src="cert2.jpg"><div class="link">View</div></div>
-</div>
-</div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-<div class="container">
-<h2 class="section-title">Projects</h2>
-<div class="grid">
-<div onclick="openText('Expense Tracker','Expense CRUD app')">
-<img src="project1.jpg"><div class="link">Details</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-<div class="container card contact">
-<h2 class="section-title">Contact</h2>
-<a href="mailto:25bcla07@kristujayanti.com"><i class="fas fa-envelope"></i>Email</a>
-<a href="https://github.com/abiyani065-debug"><i class="fab fa-github"></i>GitHub</a>
 </div>
 </section>
 
@@ -247,13 +208,15 @@ max-width:90%;
 <section id="feedback">
 <div class="container card">
 <h2 class="section-title">Feedback</h2>
+
 <form class="feedback-form" id="feedbackForm">
 <input id="name" placeholder="Your Name" required>
 <input id="email" type="email" placeholder="Your Email" required>
-<textarea id="message" placeholder="Your Feedback" required></textarea>
-<button type="submit">Send</button>
+<textarea id="message" rows="4" placeholder="Your Feedback" required></textarea>
+<button type="submit" id="submitBtn">Send Feedback</button>
 <div class="feedback-status" id="status"></div>
 </form>
+
 </div>
 </section>
 
@@ -261,69 +224,76 @@ max-width:90%;
 © 2026 Ankit Biyani
 </footer>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-<div class="modal-box">
-<span class="close" onclick="closeModal()">&times;</span>
-<img id="modalImg" style="display:none">
-<h3 id="modalTitle"></h3>
-<p id="modalText"></p>
-</div>
-</div>
-
 <!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 const supabaseClient = supabase.createClient(
-"https://fjhffuuoiaeakyhcpwjw.supabase.co",
-"YOUR_ANON_PUBLIC_KEY"
+  "https://fjhffuuoiaeakyhcpwjw.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZqaGZmdXVvaWFlYWt5aGNwd2p3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0NTM4NTEsImV4cCI6MjA4NjAyOTg1MX0.0nYlnulJgXO6l41vd6z6kXhP_d8pvhF-ecdqjm0NBJY"
 );
 
-document.getElementById("feedbackForm").addEventListener("submit",async e=>{
-e.preventDefault();
-const {error}=await supabaseClient.from("feedbacks").insert([{
-name:name.value,email:email.value,message:message.value
-}]);
-document.getElementById("status").textContent=
-error?"Error submitting feedback":"Feedback submitted successfully!";
-if(!error)e.target.reset();
+let lastSubmit = 0;
+
+document.getElementById("feedbackForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const now = Date.now();
+  if (now - lastSubmit < 10000) {
+    statusMsg("Please wait before submitting again.", "error");
+    return;
+  }
+
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = true;
+  statusMsg("Sending feedback...", "");
+
+  const { error } = await supabaseClient
+    .from("feedbacks")
+    .insert([{
+      name: name.value.trim(),
+      email: email.value.trim(),
+      message: message.value.trim()
+    }]);
+
+  if (error) {
+    statusMsg("Error submitting feedback.", "error");
+  } else {
+    statusMsg("Thank you! Feedback submitted successfully.", "success");
+    e.target.reset();
+    lastSubmit = now;
+  }
+
+  btn.disabled = false;
 });
 
-/* MODALS */
-function openImg(src){
-modal.classList.add("active");
-modalImg.style.display="block";
-modalImg.src=src;
-modalTitle.textContent="";
-modalText.textContent="";
+function statusMsg(msg, type){
+  const el = document.getElementById("status");
+  el.textContent = msg;
+  el.className = "feedback-status " + type;
 }
-function openText(t,d){
-modal.classList.add("active");
-modalImg.style.display="none";
-modalTitle.textContent=t;
-modalText.textContent=d;
-}
-function closeModal(){modal.classList.remove("active")}
 
 /* SKILL ANIMATION */
-addEventListener("scroll",()=>{
+window.addEventListener("scroll",()=>{
 document.querySelectorAll(".fill").forEach(b=>{
 if(b.getBoundingClientRect().top<innerHeight-120)
-b.style.width=b.dataset.value+"%";
+b.style.width=b.getAttribute("data")+"%";
 });
 });
 
 /* BACKGROUND */
-const c=document.getElementById("bgCanvas"),x=c.getContext("2d");
+const canvas=document.getElementById("cloudCanvas");
+const ctx=canvas.getContext("2d");
 let w,h,p=[];
-function rs(){w=c.width=innerWidth;h=c.height=innerHeight}
-rs();addEventListener("resize",rs);
-class P{constructor(){this.x=Math.random()*w;this.y=Math.random()*h;this.r=Math.random()*2+1;this.s=Math.random()*.5+.2}
-m(){this.y-=this.s;if(this.y<0)this.y=h}
-d(){x.beginPath();x.arc(this.x,this.y,this.r,0,6.28);x.fillStyle="rgba(139,92,255,.5)";x.fill()}}
-for(let i=0;i<120;i++)p.push(new P());
-(function a(){x.clearRect(0,0,w,h);p.forEach(e=>{e.m();e.d()});requestAnimationFrame(a)})();
+function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight}
+resize();addEventListener("resize",resize);
+class Particle{
+constructor(){this.x=Math.random()*w;this.y=Math.random()*h;this.r=Math.random()*2+1;this.s=Math.random()*0.4+0.2}
+move(){this.y-=this.s;if(this.y<0)this.y=h}
+draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle="rgba(139,92,255,.5)";ctx.fill()}
+}
+for(let i=0;i<120;i++)p.push(new Particle());
+(function animate(){ctx.clearRect(0,0,w,h);p.forEach(x=>{x.move();x.draw()});requestAnimationFrame(animate)})();
 </script>
 
 </body>
