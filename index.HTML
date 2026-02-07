@@ -115,7 +115,9 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:24px;
 }
-.skill{margin-bottom:16px}
+.skill{
+margin-bottom:16px;
+}
 .skill-title{
 display:flex;justify-content:space-between;
 font-size:.85rem;color:var(--muted);
@@ -171,9 +173,6 @@ padding:12px;border:none;border-radius:10px;
 background:linear-gradient(90deg,var(--accent),var(--accent2));
 color:#fff;font-weight:600;cursor:pointer;
 }
-.feedback-status{
-text-align:center;margin-top:12px;font-size:.9rem;
-}
 
 /* MODAL */
 .modal{
@@ -192,6 +191,14 @@ max-width:90%;max-height:90%;overflow:auto;
 .close{
 float:right;font-size:1.4rem;
 cursor:pointer;color:var(--accent2);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+section{padding:90px 16px}
+.hero img{width:200px;height:200px}
+.hero h1{font-size:2.2rem}
+.section-title{font-size:2rem}
 }
 </style>
 </head>
@@ -262,6 +269,55 @@ cursor:pointer;color:var(--accent2);
 </div>
 </section>
 
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+<div class="container">
+<h2 class="section-title">Certifications</h2>
+<div class="certifications">
+<div class="cert-card card" onclick="openImg('nascom.png')"><img src="nascom.png"><h4>Digital Engineering</h4><div class="link-text">Click to view certificate</div></div>
+<div class="cert-card card" onclick="openImg('front and web development.png')"><img src="front and web development.png"><h4>Frontend Development</h4><div class="link-text">Click to view certificate</div></div>
+<div class="cert-card card" onclick="openImg('aws.png')"><img src="aws.png"><h4>AWS Cloud Foundation</h4><div class="link-text">Click to view certificate</div></div>
+<div class="cert-card card" onclick="openImg('Learnthon.png')"><img src="Learnthon.png"><h4>LEARNTHON</h4><div class="link-text">Click to view certificate</div></div>
+<div class="cert-card card" onclick="openImg('CSE cer.png')"><img src="CSE cer.png"><h4>Certified Software Engineer</h4><div class="link-text">Click to view certificate</div></div>
+<div class="cert-card card" onclick="openImg('SDPD cer.png')"><img src="SDPD cer.png"><h4>Software Developer – Product Development</h4><div class="link-text">Click to view certificate</div></div>
+</div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<div class="container">
+<h2 class="section-title">Projects</h2>
+<div class="projects">
+<div class="project-card card" onclick="openProject(1)">
+<img src="expense tracker 1.webp">
+<h4>Expense Tracker</h4>
+<div class="link-text">Click here to view more details</div>
+</div>
+<div class="project-card card" onclick="openProject(2)">
+<img src="cloud  storage.avif">
+<h4>Cloud File Storage</h4>
+<div class="link-text">Click here to view more details</div>
+</div>
+<div class="project-card card" onclick="openProject(3)">
+<img src="task manager 1.png">
+<h4>Task Manager</h4>
+<div class="link-text">Click here to view more details</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="container card">
+<h2 class="section-title">Get In Touch</h2>
+<a class="contact-item" href="mailto:25bcla07@kristujayanti.com"><i class="fas fa-envelope"></i>25bcla07@kristujayanti.com</a>
+<a class="contact-item" href="https://github.com/abiyani065-debug"><i class="fab fa-github"></i>GitHub</a>
+<a class="contact-item" href="tel:+919173121381"><i class="fas fa-phone"></i>+91 9173121381</a>
+</div>
+</section>
+
 <!-- FEEDBACK -->
 <section id="feedback">
 <div class="container card">
@@ -311,13 +367,89 @@ status.style.color = "red";
 status.innerText = "✅ Feedback submitted successfully!";
 status.style.color = "#00d4ff";
 e.target.reset();
-}
-});
+}});
 </script>
 
 </body>
 </html>
 
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-box">
+<span class="close" onclick="closeModal()">&times;</span>
+<img id="modalImg" style="display:none">
+<h3 id="modalTitle"></h3>
+<p id="modalText"></p>
+</div>
+</div>
 
+<script>
+/* SKILL BAR ANIMATION */
+window.addEventListener("scroll",()=>{
+document.querySelectorAll(".fill").forEach(b=>{
+if(b.getBoundingClientRect().top < innerHeight-120)
+b.style.width=b.getAttribute("data")+"%";
+});
+});
 
+/* MODAL LOGIC */
+const modal=document.getElementById("modal");
+const modalImg=document.getElementById("modalImg");
+const modalTitle=document.getElementById("modalTitle");
+const modalText=document.getElementById("modalText");
+
+function openImg(src){
+modal.classList.add("active");
+modalImg.style.display="block";
+modalImg.src=src;
+modalTitle.innerText="Certificate";
+modalText.innerText="";
+}
+
+function openProject(i){
+modal.classList.add("active");
+modalImg.style.display="none";
+const data={
+1:["Expense Tracker","• Add, edit, delete expenses\n• Category-wise tracking\n• Responsive UI"],
+2:["Cloud File Storage","• Cloud storage concept\n• Security focused\n• Frontend simulation"],
+3:["Task Manager","• Create, update, delete tasks\n• Priority & status\n• Local storage"]
+};
+modalTitle.innerText=data[i][0];
+modalText.innerText=data[i][1];
+}
+
+function closeModal(){
+modal.classList.remove("active");
+}
+
+/* BACKGROUND CLOUD ANIMATION */
+const canvas=document.getElementById("cloudCanvas");
+const ctx=canvas.getContext("2d");
+let w,h,p=[];
+function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight}
+resize();addEventListener("resize",resize);
+class Particle{
+constructor(){
+this.x=Math.random()*w;
+this.y=Math.random()*h;
+this.r=Math.random()*2.3+1;
+this.s=Math.random()*0.4+0.2;
+}
+move(){this.y-=this.s;if(this.y<0)this.y=h}
+draw(){
+ctx.beginPath();
+ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+ctx.fillStyle="rgba(139,92,255,.5)";
+ctx.fill();
+}}
+for(let i=0;i<120;i++)p.push(new Particle());
+(function animate(){
+ctx.clearRect(0,0,w,h);
+p.forEach(x=>{x.move();x.draw()});
+requestAnimationFrame(animate);
+})();
+</script>
+
+</body>
+</html>
 
