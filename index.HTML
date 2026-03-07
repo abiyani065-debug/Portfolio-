@@ -8,8 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<!-- ✅ SUPABASE CDN -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 :root{
@@ -339,11 +337,38 @@ section{padding:90px 16px}
 </footer>
 
 <script>
-/* 🔗 SUPABASE CONFIG */
-const supabaseUrl = "https://fjhffuuoiaeakyhcpwjw.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZqaGZmdXVvaWFlYWt5aGNwd2p3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0NTM4NTEsImV4cCI6MjA4NjAyOTg1MX0.0nYlnulJgXO6l41vd6z6kXhP_d8pvhF-ecdqjm0NBJY";
+document.getElementById("feedbackForm").addEventListener("submit", async (e) => {
 
-const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+e.preventDefault();
+
+const name = document.getElementById("name").value;
+const email = document.getElementById("email").value;
+const message = document.getElementById("message").value;
+
+const status = document.getElementById("status");
+
+const res = await fetch("/api/feedback", {
+method: "POST",
+headers: {
+"Content-Type": "application/json"
+},
+body: JSON.stringify({
+name,
+email,
+message
+})
+});
+
+const data = await res.json();
+
+if (data.success) {
+status.innerText = "✅ Feedback sent!";
+document.getElementById("feedbackForm").reset();
+} else {
+status.innerText = "❌ Error sending feedback";
+}
+
+});
 
 /* 📨 FEEDBACK SUBMIT */
 document.getElementById("feedbackForm").addEventListener("submit", async (e) => {
